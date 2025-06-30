@@ -11,6 +11,8 @@ import unicodedata
 app = Flask(__name__)
 app.secret_key = 'sua_chave_secreta_aqui'  # Troque por uma chave forte
 CORS(app, supports_credentials=True)
+app.config['SESSION_COOKIE_SAMESITE'] = 'None'
+app.config['SESSION_COOKIE_SECURE'] = True
 
 # Controle de tentativas de login
 login_attempts = {}
