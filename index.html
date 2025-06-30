@@ -1,0 +1,1079 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Sistema OS Web</title>
+    <style>
+        body {
+            min-height: 100vh;
+            margin: 0;
+            font-family: Arial, 'Segoe UI', sans-serif;
+            background: linear-gradient(180deg, #1b4d7a 0%, #010719 100%);
+            color: #f8f9fa;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            background: rgba(10, 30, 60, 0.98);
+            padding: 32px 32px 24px 32px;
+            border-radius: 18px;
+            box-shadow: 0 4px 32px #0a2d45cc;
+        }
+        h1, h2 {
+            color: #cde9fc;
+            letter-spacing: 1px;
+        }
+        .hidden { display: none !important; }
+        label { font-weight: bold; color: #cde9fc; }
+        input, select, textarea {
+            background: #cde9fc;
+            color: #0a2d45;
+            border: 1.5px solid #6fb8f5;
+            border-radius: 6px;
+            font-size: 15px;
+            font-weight: bold;
+            padding: 8px 10px;
+            margin-top: 4px;
+            margin-bottom: 8px;
+            outline: none;
+            transition: border 0.2s;
+        }
+        input:focus, select:focus, textarea:focus {
+            border: 2px solid #548dd4;
+            background: #f0faff;
+        }
+        button {
+            background: linear-gradient(90deg, #007acc 60%, #548dd4 100%);
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            padding: 10px 28px;
+            margin-top: 10px;
+            cursor: pointer;
+            box-shadow: 0 2px 8px #00395f33;
+            transition: background 0.2s, box-shadow 0.2s;
+        }
+        button:hover {
+            background: linear-gradient(90deg, #0056b3 60%, #548dd4 100%);
+            box-shadow: 0 4px 16px #00395f55;
+        }
+        .logout-btn {
+            float: right;
+            background: #dc3545;
+            color: #fff;
+            border-radius: 8px;
+            font-size: 15px;
+            padding: 8px 20px;
+            margin-top: 0;
+        }
+        .logout-btn:hover { background: #a71d2a; }
+        .abas {
+            display: none !important;
+        }
+        .aba-btn {
+            padding: 12px 32px;
+            border: none;
+            background: #375a7f;
+            color: #f8f9fa;
+            cursor: pointer;
+            border-radius: 12px 12px 0 0;
+            font-weight: bold;
+            font-size: 16px;
+            margin-right: 2px;
+            transition: background 0.2s, color 0.2s;
+        }
+        .aba-btn.aba-ativa {
+            background: linear-gradient(90deg, #007acc 60%, #548dd4 100%);
+            color: #fff;
+            box-shadow: 0 2px 8px #00395f33;
+        }
+        .filtros {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            margin-bottom: 20px;
+        }
+        .filtros > div { flex: 1 1 180px; }
+        .contagem {
+            margin-bottom: 10px;
+            font-weight: bold;
+            color: #a3d4f7;
+        }
+        .tabela-container {
+            width: 100%;
+            overflow-x: scroll;
+            margin-bottom: 18px;
+            max-height: 350px !important;
+            min-height: 120px;
+            overflow-y: auto;
+            scrollbar-gutter: stable both-edges;
+            padding-bottom: 18px;
+            position: sticky;
+            bottom: 0;
+            background: #cde9fc;
+            z-index: 1;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            min-width: 900px;
+            background: #cde9fc;
+            color: #0a2d45;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 12px #00395f22;
+        }
+        th, td {
+            border: 1px solid #548dd4;
+            padding: 10px 8px;
+            text-align: left;
+        }
+        th {
+            background: linear-gradient(90deg, #375a7f 60%, #548dd4 100%);
+            color: #fff;
+            font-weight: bold;
+            font-size: 15px;
+        }
+        tr:hover td {
+            background: #a3d4f7;
+            color: #00395f;
+        }
+        .tabela-container thead th {
+            position: sticky;
+            top: 0;
+            background: linear-gradient(90deg, #375a7f 60%, #548dd4 100%);
+            z-index: 2;
+        }
+        .detalhes-os {
+            background: #f0faff;
+            border-radius: 10px;
+            padding: 24px 18px;
+            margin-bottom: 30px;
+            color: #0a2d45;
+            box-shadow: 0 2px 8px #00395f22;
+        }
+        .detalhes-os h2 { margin-top: 0; color: #007acc; }
+        .detalhes-grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr 1fr 2fr;
+            gap: 8px 16px;
+        }
+        .detalhes-grid label { font-weight: bold; color: #007acc; margin: 0; }
+        .detalhes-grid span { margin: 0; }
+        #mensagem, #login-erro { margin-top: 15px; color: #F44336; font-weight: bold; }
+        #mensagem { color: #4CAF50; }
+        #login-erro { color: #F44336; }
+        #abrir-detalhes .detalhes-os { background: #e3f2fd; }
+        #abrir-arquivos a {
+            color: #007acc;
+            text-decoration: underline;
+            font-weight: bold;
+        }
+        #abrir-arquivos a:hover { color: #548dd4; }
+        #erro-grafico { color: #F44336; font-weight: bold; margin-top: 10px; }
+        @media (max-width: 900px) {
+            .container { padding: 8px; }
+            .filtros { flex-direction: column; gap: 5px; }
+            table, th, td { font-size: 13px; }
+            .aba-btn { width: 100%; margin-bottom: 2px; }
+            .detalhes-grid { grid-template-columns: 1fr 1fr; }
+            .tabela-container { max-height: 220px; }
+        }
+        @media (max-width: 700px) {
+            .container {
+                padding: 4px 0 0 0;
+                min-height: 100vh;
+                width: 100vw;
+                max-width: 100vw;
+                border-radius: 0;
+                box-shadow: none;
+                display: flex;
+                flex-direction: column;
+            }
+            #graficos-area {
+                min-height: 700px;
+                padding-bottom: 40px;
+            }
+            #grafico-os {
+                margin-top: 100px;
+                height: 220px !important;
+                max-width: 100vw;
+            }
+            .abas {
+                display: none !important;
+            }
+            .menu-hamburguer {
+                display: block;
+                position: fixed !important;
+                top: 18px;
+                left: 18px;
+                z-index: 1001 !important;
+            }
+            #btn-filtros {
+                position: absolute;
+                top: 18px;
+                right: 18px;
+                z-index: 11;
+                margin: 0;
+                float: none;
+            }
+            h1 {
+                margin-top: 60px;
+                text-align: center;
+            }
+            .tabela-container {
+                max-height: 350px !important;
+                min-width: 0;
+                overflow-x: auto;
+                overflow-y: auto;
+                flex: 1 1 auto;
+            }
+            table {
+                min-width: 600px;
+                font-size: 13px;
+            }
+            #painel-area {
+                min-height: 100vh;
+                display: flex;
+                flex-direction: column;
+            }
+        }
+        @media (max-width: 600px) {
+            .container {
+                max-width: 100vw;
+                width: 100vw;
+                min-width: 0;
+                margin: 0;
+                border-radius: 0;
+                padding: 0 2vw 10vw 2vw;
+                box-shadow: none;
+                min-height: 100vh;
+            }
+            h1, h2 {
+                font-size: 1.2em;
+                text-align: center;
+            }
+            .tabela-container {
+                max-height: unset;
+                min-width: 0;
+                overflow-x: auto;
+                overflow-y: auto;
+                flex: 1 1 auto;
+            }
+            table {
+                min-width: 500px;
+                font-size: 12px;
+            }
+            #painel-area {
+                min-height: 100vh;
+                display: flex;
+                flex-direction: column;
+            }
+        }
+        /* --- LOGIN CENTRALIZADO E DESTACADO --- */
+        #login-area {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 60vh;
+        }
+        #login-form {
+            background: rgba(10,30,60,0.98);
+            border-radius: 18px;
+            box-shadow: 0 4px 32px #0a2d45cc;
+            padding: 38px 38px 28px 38px;
+            min-width: 340px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            border: 2.5px solid #548dd4;
+        }
+        #login-form label {
+            color: #cde9fc;
+            font-size: 16px;
+            margin-bottom: 2px;
+        }
+        #login-form input {
+            width: 100%;
+            font-size: 17px;
+            padding: 10px 12px;
+        }
+        #login-form button {
+            width: 100%;
+            font-size: 17px;
+            margin-top: 12px;
+            padding: 12px 0;
+        }
+        #login-erro {
+            color: #F44336;
+            font-weight: bold;
+            text-align: center;
+            margin-top: 10px;
+        }
+        /* MENU HAMBURGUER */
+        .menu-hamburguer {
+            display: block !important;
+            background: rgba(255,255,255,0.18) !important;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px #00395f33;
+            border: 1.5px solid #6fb8f5;
+            transition: background 0.2s, box-shadow 0.2s;
+            font-size: 30px;
+            color: #cde9fc;
+            cursor: pointer;
+            margin-right: 12px;
+            position: fixed !important;
+            top: 18px;
+            left: 18px;
+            z-index: 1001 !important;
+        }
+        .menu-hamburguer:hover {
+            background: rgba(0,123,255,0.18) !important;
+            box-shadow: 0 4px 16px #00395f55;
+        }
+        body:not(.logado) .menu-hamburguer {
+            display: none !important;
+        }
+        body.logado #login-area { display: none !important; }
+        body:not(.logado) .container { display: none !important; }
+        @media (max-width: 700px) {
+            .abas {
+                display: none !important;
+            }
+            .menu-hamburguer {
+                display: block;
+                position: absolute;
+                top: 18px;
+                left: 18px;
+                z-index: 10;
+            }
+            .menu-mobile {
+                display: flex;
+                flex-direction: column;
+                position: fixed;
+                top: 60px;
+                left: 18px;
+                background: #1b4d7a;
+                border-radius: 10px;
+                box-shadow: 0 2px 12px #00395f55;
+                padding: 8px 0;
+                min-width: 140px;
+                z-index: 20;
+                opacity: 0;
+                transform: translateY(-20px);
+                pointer-events: none;
+                transition: opacity 0.35s cubic-bezier(.4,0,.2,1), transform 0.35s cubic-bezier(.4,0,.2,1);
+            }
+            .menu-mobile.show {
+                opacity: 1;
+                transform: translateY(0);
+                pointer-events: auto;
+            }
+            .menu-mobile button {
+                width: 100%;
+                border-radius: 0;
+                margin: 0;
+                text-align: left;
+                padding: 12px 18px;
+                background: none;
+                color: #cde9fc;
+                border: none;
+                font-size: 16px;
+            }
+            .menu-mobile button.aba-ativa {
+                background: #548dd4;
+                color: #fff;
+            }
+        }
+        body:not(.logado) #filtros-overlay { display: none !important; }
+        #filtros-overlay.hidden { display: none !important; }
+        #painel-filtros {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 18px 16px;
+            align-items: end;
+            margin-bottom: 18px;
+        }
+        #painel-filtros > div {
+            min-width: 120px;
+        }
+        #painel-filtros label {
+            display: block;
+            font-weight: bold;
+            color: #6fb8f5;
+            margin-bottom: 4px;
+        }
+        #painel-filtros input, #painel-filtros select {
+            width: 100%;
+            box-sizing: border-box;
+        }
+        @media (max-width: 900px) {
+            #painel-filtros {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        @media (max-width: 600px) {
+            #painel-filtros {
+                grid-template-columns: 1fr;
+            }
+        }
+        #painel-area h1 {
+            position: sticky;
+            top: 0;
+            z-index: 3;
+            background: rgba(10, 30, 60, 0.98);
+            margin-top: 0;
+            padding-top: 12px;
+            padding-bottom: 12px;
+        }
+    </style>
+</head>
+<body>
+<!-- Overlay do painel de filtros (fora do painel-area) -->
+<div id="filtros-overlay" class="hidden" style="position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.35);z-index:1000;display:flex;align-items:center;justify-content:center;">
+    <div id="painel-filtros" style="background:#f7fbff;border-radius:16px;box-shadow:0 4px 32px #00395f55;padding:24px 18px;min-width:260px;max-width:95vw;max-height:90vh;overflow:auto;position:relative;">
+        <button id="btn-fechar-filtros" style="position:absolute;top:8px;right:12px;background:none;border:none;font-size:1.5em;color:#007acc;cursor:pointer;">&times;</button>
+        <h2 style="color:#007acc;text-align:center;font-size:1.1em;margin-top:0;">Filtros</h2>
+        <div class="filtros" id="filtros-panel">
+            <!-- Filtros serão preenchidos dinamicamente aqui -->
+        </div>
+        <div style="display:flex;gap:10px;justify-content:center;margin-top:10px;">
+            <button onclick="aplicarFiltros();fecharFiltros();return false;">Filtrar</button>
+            <button onclick="limparFiltros();fecharFiltros();return false;">Limpar</button>
+        </div>
+    </div>
+</div>
+<div id="login-area">
+    <h1>Login</h1>
+    <form id="login-form">
+        <label for="usuario">Usuário:</label>
+        <input type="text" id="usuario" name="usuario" required>
+        <label for="senha">Senha:</label>
+        <input type="password" id="senha" name="senha" required>
+        <button type="submit">Entrar</button>
+        <div id="login-erro"></div>
+    </form>
+</div>
+<div class="container">
+    <button class="menu-hamburguer" id="btn-menu-hamburguer" onclick="toggleMenuMobile()">&#9776;</button>
+    <div id="menu-mobile" class="menu-mobile hidden"></div>
+    <div class="abas hidden" id="abas-navegacao">
+        <button id="aba-resumo" class="aba-btn aba-ativa" onclick="mostrarAba('resumo')">Resumo</button>
+        <button id="aba-abrir" class="aba-btn" onclick="mostrarAba('abrir')">Abrir OS</button>
+        <button id="aba-graficos" class="aba-btn" onclick="mostrarAba('graficos')">Gráficos</button>
+    </div>
+    <div id="painel-area" class="hidden aba-area">
+        <h1>Resumo das Ordens de Serviço
+            <button id="btn-filtros" onclick="abrirFiltros()" style="background:none;border:none;font-size:1.5em;color:#007acc;cursor:pointer;" title="Filtros"><span>&#128269;</span></button>
+        </h1>
+        <div class="contagem" id="contagem"></div>
+        <div class="tabela-container">
+            <table>
+                <thead id="tabela-head">
+                    <tr id="tabela-head-row"></tr>
+                </thead>
+                <tbody id="tabela-resumo">
+                    <tr><td colspan="20">Carregando...</td></tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="detalhes-os hidden" id="detalhes-os">
+            <h2>Detalhes da OS</h2>
+            <div class="detalhes-grid" id="detalhes-grid"></div>
+        </div>
+    </div>
+    <div id="abrir-area" class="hidden aba-area">
+        <h1>Abrir OS</h1>
+        <div style="margin-bottom:15px;">
+            <label for="abrir-os-input">Digite ou selecione o número da OS:</label>
+            <input type="text" id="abrir-os-input" list="abrir-os-list" style="width:200px;">
+            <datalist id="abrir-os-list"></datalist>
+            <button onclick="buscarAbrirOS()">Buscar</button>
+        </div>
+        <div id="abrir-detalhes"></div>
+        <div id="abrir-arquivos"></div>
+    </div>
+    <div id="graficos-area" class="hidden aba-area">
+        <h1>Gráficos de OS</h1>
+        <div style="margin-bottom:15px;">
+            <label><input type="radio" name="tipo-grafico" value="mensal" checked onchange="atualizarTipoGrafico()"> Mensal</label>
+            <label><input type="radio" name="tipo-grafico" value="comparativo" onchange="atualizarTipoGrafico()"> Comparativo</label>
+        </div>
+        <div id="filtros-grafico-mensal">
+            <label for="ano-grafico-mensal">Ano:</label>
+            <select id="ano-grafico-mensal"></select>
+            <button onclick="carregarGraficoMensal()">Atualizar</button>
+        </div>
+        <div id="filtros-grafico-comparativo" class="hidden">
+            <label for="ano1-grafico">Ano 1:</label>
+            <select id="ano1-grafico"></select>
+            <label for="ano2-grafico">Ano 2:</label>
+            <select id="ano2-grafico"></select>
+            <button onclick="carregarGraficoComparativo()">Atualizar</button>
+        </div>
+        <canvas id="grafico-os" width="900" height="520"></canvas>
+        <div id="erro-grafico" style="color:red;"></div>
+    </div>
+</div>
+<script>
+    let osData = [];
+    let campos = [];
+    let campoData = null;
+    // Ordem personalizada das colunas do resumo
+    const ordemColunasResumo = [
+        "Cliente", "Modelo", "OS", "Entrada equip.", "Valor", "Saída equip.", "Pagamento",
+        "Data pagamento 1", "Data pagamento 2", "Data pagamento 3", "Nº Série", "Técnico",
+        "Vezes", "avaliacao_tecnica", "causas_provavel", "id"
+    ];
+    function mostrarAba(qual) {
+        fecharMenuMobile();
+        fecharFiltros();
+        // Esconde todas as áreas de aba
+        document.querySelectorAll('.aba-area').forEach(e => e.classList.add('hidden'));
+        document.getElementById('aba-resumo').classList.remove('aba-ativa');
+        document.getElementById('aba-abrir').classList.remove('aba-ativa');
+        document.getElementById('aba-graficos').classList.remove('aba-ativa');
+        
+        if (qual === 'resumo') {
+            document.getElementById('aba-resumo').classList.add('aba-ativa');
+            document.getElementById('painel-area').classList.remove('hidden');
+            document.getElementById('abrir-area').classList.add('hidden');
+            document.getElementById('graficos-area').classList.add('hidden');
+        } else if (qual === 'abrir') {
+            document.getElementById('aba-abrir').classList.add('aba-ativa');
+            document.getElementById('abrir-area').classList.remove('hidden');
+            document.getElementById('painel-area').classList.add('hidden');
+            document.getElementById('graficos-area').classList.add('hidden');
+        } else if (qual === 'graficos') {
+            document.getElementById('aba-graficos').classList.add('aba-ativa');
+            document.getElementById('graficos-area').classList.remove('hidden');
+            document.getElementById('painel-area').classList.add('hidden');
+            document.getElementById('abrir-area').classList.add('hidden');
+            preencherAnosGraficos();
+            carregarGraficoMensal();
+        }
+        atualizarMenuMobileAbaAtiva();
+    }
+    function mostrarPainel() {
+        fecharFiltros();
+        document.body.classList.add('logado');
+        document.getElementById('login-area').classList.add('hidden');
+        document.getElementById('abas-navegacao').classList.remove('hidden');
+        document.getElementById('painel-area').classList.remove('hidden');
+        document.getElementById('abrir-area').classList.add('hidden');
+        document.getElementById('graficos-area').classList.add('hidden');
+        document.getElementById('aba-resumo').classList.add('aba-ativa');
+        document.getElementById('aba-abrir').classList.remove('aba-ativa');
+        document.getElementById('aba-graficos').classList.remove('aba-ativa');
+        carregarOS();
+        preencherAbrirOSList();
+    }
+    function mostrarLogin() {
+        fecharFiltros();
+        document.body.classList.remove('logado');
+        document.getElementById('abas-navegacao').classList.add('hidden');
+        document.getElementById('painel-area').classList.add('hidden');
+        document.getElementById('abrir-area').classList.add('hidden');
+        document.getElementById('graficos-area').classList.add('hidden');
+        document.getElementById('login-area').classList.remove('hidden');
+        document.getElementById('login-form').reset();
+    }
+    document.getElementById('login-form').onsubmit = function(e) {
+        e.preventDefault();
+        const usuario = document.getElementById('usuario').value;
+        const senha = document.getElementById('senha').value;
+        fetch('http://localhost:5000/api/login', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ usuario, senha }),
+            credentials: 'include'
+        })
+        .then(resp => resp.json().then(data => ({status: resp.status, data})))
+        .then(res => {
+            if (res.status === 200) {
+                mostrarPainel();
+                document.getElementById('login-erro').textContent = '';
+            } else {
+                document.getElementById('login-erro').textContent = res.data.erro || 'Erro ao fazer login';
+            }
+        })
+        .catch(() => {
+            document.getElementById('login-erro').textContent = 'Erro de conexão com o servidor.';
+        });
+    };
+    function carregarOS() {
+        fetch('http://localhost:5000/api/os_todos', { credentials: 'include' })
+            .then(resp => resp.json())
+            .then(data => {
+                if (data.erro) {
+                    document.getElementById('tabela-resumo').innerHTML = `<tr><td colspan="20">${data.erro}</td></tr>`;
+                    return;
+                }
+                osData = data;
+                if (osData.length === 0) {
+                    document.getElementById('tabela-resumo').innerHTML = '<tr><td colspan="20">Nenhuma OS encontrada.</td></tr>';
+                    return;
+                }
+                campos = Object.keys(osData[0]);
+                campoData = campos.find(c => c.toLowerCase().includes('entrada'));
+                renderTabela(osData);
+            });
+    }
+    function preencherFiltros() {
+        // Mapeamento entre campo do objeto e id do select
+        const camposFiltro = [
+            { campo: 'Cliente', id: 'filtro-Cliente' },
+            { campo: 'Modelo', id: 'filtro-Modelo' },
+            { campo: 'OS', id: 'filtro-OS' },
+            { campo: 'Série', id: 'filtro-Série' },
+            { campo: 'Técnico', id: 'filtro-Técnico' }
+        ];
+        const sets = {};
+        camposFiltro.forEach(f => sets[f.campo] = new Set());
+        const anos = new Set();
+        osData.forEach(os => {
+            camposFiltro.forEach(f => {
+                if (os[f.campo]) sets[f.campo].add(os[f.campo]);
+            });
+            if (campoData && os[campoData]) {
+                const d = parseData(os[campoData]);
+                if (d) anos.add(d.getFullYear());
+            }
+        });
+        camposFiltro.forEach(f => {
+            const el = document.getElementById(f.id);
+            if (!el) return; // Evita erro se o elemento não existir
+            const val = el.value;
+            el.innerHTML = '<option value="">Todos</option>' + Array.from(sets[f.campo]).sort().map(v=>`<option value="${v}">${v}</option>`).join('');
+            el.value = val;
+        });
+        const elAno = document.getElementById('filtro-ano');
+        if (elAno) {
+            const valAno = elAno.value;
+            elAno.innerHTML = '<option value="">Todos</option>' + Array.from(anos).sort().map(a=>`<option value="${a}">${a}</option>`).join('');
+            elAno.value = valAno;
+        }
+    }
+    function aplicarFiltros() {
+        const camposFiltro = ['Cliente','Modelo','OS','Série','Técnico'];
+        [...camposFiltro,'mes','ano','texto'].forEach(c => {
+            const el = document.getElementById('filtro-'+c);
+            window['filtro_'+c+'_valor'] = el ? el.value : '';
+        });
+        let filtrado = osData;
+        camposFiltro.forEach(c => {
+            const el = document.getElementById('filtro-'+c);
+            const v = el ? el.value : '';
+            if (v) filtrado = filtrado.filter(os => (os[c]||'').toString().toLowerCase().includes(v.toLowerCase()));
+        });
+        const elMes = document.getElementById('filtro-mes');
+        const mes = elMes ? elMes.value : '';
+        if (mes && campoData) filtrado = filtrado.filter(os => {
+            const d = parseData(os[campoData]);
+            return d && (d.getMonth()+1) == parseInt(mes);
+        });
+        const elAno = document.getElementById('filtro-ano');
+        const ano = elAno ? elAno.value : '';
+        if (ano && campoData) filtrado = filtrado.filter(os => {
+            const d = parseData(os[campoData]);
+            return d && d.getFullYear() == parseInt(ano);
+        });
+        const elTxt = document.getElementById('filtro-texto');
+        const txt = elTxt ? elTxt.value.trim().toLowerCase() : '';
+        if (txt) filtrado = filtrado.filter(os => Object.values(os).some(v => (v||'').toString().toLowerCase().includes(txt)));
+        renderTabela(filtrado);
+        fecharFiltros();
+    }
+    function limparFiltros() {
+        const camposFiltro = ['Cliente','Modelo','OS','Série','Técnico'];
+        [...camposFiltro,'mes','ano','texto'].forEach(c => {
+            window['filtro_'+c+'_valor'] = '';
+        });
+        aplicarFiltros();
+        fecharFiltros();
+    }
+    function renderTabela(data) {
+        const headRow = document.getElementById('tabela-head-row');
+        headRow.innerHTML = '';
+        ordemColunasResumo.forEach(c => {
+            const th = document.createElement('th');
+            th.textContent = c;
+            headRow.appendChild(th);
+        });
+        const tbody = document.getElementById('tabela-resumo');
+        tbody.innerHTML = '';
+        if (data.length === 0) {
+            tbody.innerHTML = '<tr><td colspan="'+ordemColunasResumo.length+'">Nenhuma OS encontrada.</td></tr>';
+        } else {
+            data.forEach(os => {
+                const tr = document.createElement('tr');
+                ordemColunasResumo.forEach(c => {
+                    const td = document.createElement('td');
+                    td.textContent = os[c]||'';
+                    tr.appendChild(td);
+                });
+                tr.onclick = () => mostrarDetalhes(os.id);
+                tbody.appendChild(tr);
+            });
+        }
+        document.getElementById('contagem').textContent = `Registros: ${data.length}`;
+        document.getElementById('detalhes-os').classList.add('hidden');
+    }
+    function mostrarDetalhes(os_id) {
+        fetch(`http://localhost:5000/api/os_detalhe/${os_id}`, { credentials: 'include' })
+            .then(resp => resp.json())
+            .then(data => {
+                if (data.erro) {
+                    alert(data.erro);
+                    return;
+                }
+                const grid = document.getElementById('detalhes-grid');
+                grid.innerHTML = '';
+                Object.entries(data).forEach(([k,v]) => {
+                    const label = document.createElement('label');
+                    label.textContent = k+':';
+                    const span = document.createElement('span');
+                    span.textContent = v||'';
+                    grid.appendChild(label);
+                    grid.appendChild(span);
+                });
+                document.getElementById('detalhes-os').classList.remove('hidden');
+                window.scrollTo({top:0,behavior:'smooth'});
+            });
+    }
+    function parseData(val) {
+        if (!val) return null;
+        if (typeof val === 'string') {
+            val = val.replace(/\//g,'-');
+            const parts = val.split('-');
+            if (parts.length === 3) {
+                const [a,b,c] = parts;
+                if (a.length === 4) return new Date(a,b-1,c);
+                if (c.length === 4) return new Date(c,b-1,a);
+            }
+        }
+        const d = new Date(val);
+        return isNaN(d.getTime()) ? null : d;
+    }
+    function logout() {
+        fecharFiltros();
+        fetch('http://localhost:5000/api/logout', { method: 'POST', credentials: 'include' })
+            .then(() => mostrarLogin());
+    }
+    function preencherAbrirOSList() {
+        const lista = document.getElementById('abrir-os-list');
+        lista.innerHTML = '';
+        const osSet = new Set();
+        osData.forEach(os => {
+            if (os.os) osSet.add(os.os.toString().trim());
+        });
+        Array.from(osSet).sort().forEach(osnum => {
+            const opt = document.createElement('option');
+            opt.value = osnum;
+            lista.appendChild(opt);
+        });
+    }
+    function buscarAbrirOS() {
+        const osnum = document.getElementById('abrir-os-input').value.trim();
+        if (!osnum) return;
+        // Buscar detalhes (tolerante a string/numero e ao nome do campo)
+        const osObj = osData.find(o => {
+            const osKey = Object.keys(o).find(k => k.toLowerCase() === 'os');
+            return osKey && o[osKey] && o[osKey].toString().trim() === osnum;
+        });
+        if (!osObj) {
+            document.getElementById('abrir-detalhes').innerHTML = '<div style="color:red;">OS não encontrada.</div>';
+            document.getElementById('abrir-arquivos').innerHTML = '';
+            return;
+        }
+        let html = '<div class="detalhes-os"><h2>Detalhes da OS</h2><div class="detalhes-grid">';
+        Object.entries(osObj).forEach(([k,v]) => {
+            html += `<label>${k}:</label><span>${v||''}</span>`;
+        });
+        html += '</div></div>';
+        document.getElementById('abrir-detalhes').innerHTML = html;
+        // Buscar arquivos
+        const clienteKey = Object.keys(osObj).find(k => k.toLowerCase() === 'cliente');
+        const osKey = Object.keys(osObj).find(k => k.toLowerCase() === 'os');
+        fetch(`http://localhost:5000/api/os_arquivos/${encodeURIComponent(osObj[clienteKey])}/${encodeURIComponent(osObj[osKey])}` , { credentials: 'include' })
+            .then(resp => resp.json())
+            .then(data => {
+                if (!data.arquivos || data.arquivos.length === 0) {
+                    document.getElementById('abrir-arquivos').innerHTML = '<div>Nenhum arquivo encontrado.</div>';
+                    return;
+                }
+                let ex = data.arquivos.filter(a=>a.endsWith('.xlsx'));
+                let pdf = data.arquivos.filter(a=>a.endsWith('.pdf'));
+                let html = '<div style="display:flex;gap:20px;flex-wrap:wrap;"><div><b>Excel</b><ul>';
+                ex.forEach(f=>{ html += `<li><a href="http://localhost:5000/api/download_arquivo/${encodeURIComponent(osObj[clienteKey])}/${encodeURIComponent(osObj[osKey])}/${encodeURIComponent(f)}" target="_blank">${f}</a></li>`; });
+                html += '</ul></div><div><b>PDF</b><ul>';
+                pdf.forEach(f=>{ html += `<li><a href="http://localhost:5000/api/download_arquivo/${encodeURIComponent(osObj[clienteKey])}/${encodeURIComponent(osObj[osKey])}/${encodeURIComponent(f)}" target="_blank">${f}</a></li>`; });
+                html += '</ul></div></div>';
+                document.getElementById('abrir-arquivos').innerHTML = html;
+            });
+    }
+    // Função utilitária para remover acentos
+    function removerAcentos(str) {
+        return str.normalize('NFD').replace(/[0-\u017F\u0300-\u036f]/g, "");
+    }
+    function preencherAnosGraficos() {
+        // Preencher selects de anos manualmente para teste
+        const anosArr = [2026, 2025 ,2024, 2023, 2022];
+        const selMensal = document.getElementById('ano-grafico-mensal');
+        
+        const sel1 = document.getElementById('ano1-grafico');
+        const sel2 = document.getElementById('ano2-grafico');
+        selMensal.innerHTML = anosArr.map(a=>`<option value="${a}">${a}</option>`).join('');
+        sel1.innerHTML = anosArr.map(a=>`<option value="${a}">${a}</option>`).join('');
+        sel2.innerHTML = anosArr.map(a=>`<option value="${a}">${a}</option>`).join('');
+    }
+    function atualizarTipoGrafico() {
+        const tipo = document.querySelector('input[name="tipo-grafico"]:checked').value;
+        document.getElementById('filtros-grafico-mensal').classList.toggle('hidden', tipo !== 'mensal');
+        document.getElementById('filtros-grafico-comparativo').classList.toggle('hidden', tipo !== 'comparativo');
+        if (tipo === 'mensal') carregarGraficoMensal();
+        else carregarGraficoComparativo();
+    }
+    let chart = null;
+    function carregarGraficoMensal() {
+        const ano = document.getElementById('ano-grafico-mensal').value;
+        if (!ano) return;
+        fetch(`http://localhost:5000/api/grafico_mensal/${ano}`, { credentials: 'include' })
+            .then(resp => resp.json())
+            .then(data => {
+                if (data.erro) {
+                    document.getElementById('erro-grafico').textContent = data.erro;
+                    return;
+                }
+                document.getElementById('erro-grafico').textContent = '';
+                renderGraficoMensal(data.meses, data.valores, ano);
+            });
+    }
+    function carregarGraficoComparativo() {
+        const ano1 = document.getElementById('ano1-grafico').value;
+        const ano2 = document.getElementById('ano2-grafico').value;
+        if (!ano1 || !ano2) return;
+        fetch(`http://localhost:5000/api/grafico_comparativo/${ano1}/${ano2}`, { credentials: 'include' })
+            .then(resp => resp.json())
+            .then(data => {
+                if (data.erro) {
+                    document.getElementById('erro-grafico').textContent = data.erro;
+                    return;
+                }
+                document.getElementById('erro-grafico').textContent = '';
+                renderGraficoComparativo(data.meses, data.valores1, data.valores2, data.ano1, data.ano2);
+            });
+    }
+    function renderGraficoMensal(meses, valores, ano) {
+        if (chart) chart.destroy();
+        const ctx = document.getElementById('grafico-os').getContext('2d');
+        chart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: meses,
+                datasets: [{
+                    label: `Valor por mês (${ano})`,
+                    data: valores,
+                    backgroundColor: 'rgba(0,123,255,0.6)'
+                }]
+            },
+            options: {
+                responsive: true,
+                layout: { padding: { top: 100 } },
+                plugins: {
+                    legend: {
+                        display: true,
+                        position: 'top',
+                        labels: { padding: 24 }
+                    },
+                    datalabels: {
+                        anchor: 'end',
+                        align: 'end',
+                        color: '#fff',
+                        font: { weight: 'bold', size: 14 },
+                        rotation: -90,
+                        offset: 8,
+                        formatter: function(value) {
+                            return value > 0 ? 'R$ ' + value.toLocaleString('pt-BR', {minimumFractionDigits: 2}) : '';
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        display: false
+                    }
+                }
+            },
+            plugins: [ChartDataLabels]
+        });
+    }
+    function renderGraficoComparativo(meses, valores1, valores2, ano1, ano2) {
+        if (chart) chart.destroy();
+        const ctx = document.getElementById('grafico-os').getContext('2d');
+        chart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: meses,
+                datasets: [
+                    { label: `Ano ${ano1}`, data: valores1, backgroundColor: 'rgba(0,123,255,0.6)' },
+                    { label: `Ano ${ano2}`, data: valores2, backgroundColor: 'rgba(220,53,69,0.6)' }
+                ]
+            },
+            options: {
+                responsive: true,
+                layout: { padding: { top: 100 } },
+                plugins: {
+                    legend: {
+                        display: true,
+                        position: 'top',
+                        labels: { padding: 24 }
+                    },
+                    datalabels: {
+                        anchor: 'end',
+                        align: 'end',
+                        color: '#fff',
+                        font: { weight: 'bold', size: 14 },
+                        rotation: -90,
+                        offset: 8,
+                        formatter: function(value) {
+                            return value > 0 ? 'R$ ' + value.toLocaleString('pt-BR', {minimumFractionDigits: 2}) : '';
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        display: false
+                    }
+                }
+            },
+            plugins: [ChartDataLabels]
+        });
+    }
+    // MENU HAMBURGUER MOBILE
+    function toggleMenuMobile() {
+        const menu = document.getElementById('menu-mobile');
+        
+        if (menu.classList.contains('hidden') || !menu.classList.contains('show')) {
+            // Abrir menu
+            menu.innerHTML = `
+                <button class="${document.getElementById('aba-resumo').classList.contains('aba-ativa') ? 'aba-ativa' : ''}" onclick="mostrarAba('resumo')">Resumo</button>
+                <button class="${document.getElementById('aba-abrir').classList.contains('aba-ativa') ? 'aba-ativa' : ''}" onclick="mostrarAba('abrir')">Abrir OS</button>
+                <button class="${document.getElementById('aba-graficos').classList.contains('aba-ativa') ? 'aba-ativa' : ''}" onclick="mostrarAba('graficos')">Gráficos</button>
+            `;
+            menu.classList.remove('hidden');
+            menu.classList.add('show');
+        } else {
+            // Fechar menu
+            fecharMenuMobile();
+        }
+    }
+    function fecharMenuMobile() {
+        const menu = document.getElementById('menu-mobile');
+        menu.classList.remove('show');
+        setTimeout(() => {
+            menu.classList.add('hidden');
+        }, 350); // Aguarda a animação terminar
+    }
+    function abrirFiltros() {
+        console.log('abrirFiltros chamado');
+        const filtrosPanel = document.getElementById('filtros-panel');
+        filtrosPanel.innerHTML = `
+            <div>
+                <label for="filtro-Cliente">Cliente:</label>
+                <select id="filtro-Cliente"><option value="">Todos</option></select>
+            </div>
+            <div>
+                <label for="filtro-Modelo">Modelo:</label>
+                <select id="filtro-Modelo"><option value="">Todos</option></select>
+            </div>
+            <div>
+                <label for="filtro-OS">OS:</label>
+                <select id="filtro-OS"><option value="">Todos</option></select>
+            </div>
+            <div>
+                <label for="filtro-Série">Série:</label>
+                <select id="filtro-Série"><option value="">Todos</option></select>
+            </div>
+            <div>
+                <label for="filtro-Técnico">Técnico:</label>
+                <select id="filtro-Técnico"><option value="">Todos</option></select>
+            </div>
+            <div>
+                <label for="filtro-mes">Mês:</label>
+                <select id="filtro-mes">
+                    <option value="">Todos</option>
+                    <option value="1">Janeiro</option>
+                    <option value="2">Fevereiro</option>
+                    <option value="3">Março</option>
+                    <option value="4">Abril</option>
+                    <option value="5">Maio</option>
+                    <option value="6">Junho</option>
+                    <option value="7">Julho</option>
+                    <option value="8">Agosto</option>
+                    <option value="9">Setembro</option>
+                    <option value="10">Outubro</option>
+                    <option value="11">Novembro</option>
+                    <option value="12">Dezembro</option>
+                </select>
+            </div>
+            <div>
+                <label for="filtro-ano">Ano:</label>
+                <select id="filtro-ano"><option value="">Todos</option></select>
+            </div>
+            <div>
+                <label for="filtro-texto">Busca livre:</label>
+                <input type="text" id="filtro-texto" placeholder="Digite para buscar...">
+            </div>
+        `;
+        
+        // Mostrar o overlay dos filtros
+        document.getElementById('filtros-overlay').classList.remove('hidden');
+        
+        // Configurar o botão de fechar
+        const btnFechar = document.getElementById('btn-fechar-filtros');
+        if (btnFechar) {
+            btnFechar.onclick = fecharFiltros;
+        }
+
+        // Aguarda o DOM atualizar antes de preencher os selects
+        setTimeout(preencherFiltros, 0);
+    }
+    function fecharFiltros() {
+        console.log('fecharFiltros chamado');
+        document.getElementById('filtros-overlay').classList.add('hidden');
+        // Limpa o conteúdo do painel de filtros para evitar resíduos
+        var panel = document.getElementById('filtros-panel');
+        if (panel) panel.innerHTML = '';
+    }
+    document.addEventListener('DOMContentLoaded', function() {
+        fecharFiltros(); // Garante que o overlay sempre começa oculto
+        var overlay = document.getElementById('filtros-overlay');
+        if (overlay) {
+            overlay.addEventListener('click', function(e) {
+                if (e.target.id === 'filtros-overlay') fecharFiltros();
+            });
+        }
+        var btnFiltro = document.getElementById('btn-filtros');
+        if (btnFiltro) {
+            btnFiltro.onclick = abrirFiltros;
+        }
+    });
+    function atualizarMenuMobileAbaAtiva() {
+        const menu = document.getElementById('menu-mobile');
+        if (!menu || menu.classList.contains('hidden')) return;
+        menu.innerHTML = `
+            <button class="${document.getElementById('aba-resumo').classList.contains('aba-ativa') ? 'aba-ativa' : ''}" onclick="mostrarAba('resumo')">Resumo</button>
+            <button class="${document.getElementById('aba-abrir').classList.contains('aba-ativa') ? 'aba-ativa' : ''}" onclick="mostrarAba('abrir')">Abrir OS</button>
+            <button class="${document.getElementById('aba-graficos').classList.contains('aba-ativa') ? 'aba-ativa' : ''}" onclick="mostrarAba('graficos')">Gráficos</button>
+        `;
+    }
+</script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
+</body>
+</html>
