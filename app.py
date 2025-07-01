@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify, session, send_from_directory
+from flask import Flask, request, jsonify, session, send_from_directory, g
 import psycopg2
 import hashlib
 from datetime import datetime, timedelta
@@ -7,6 +7,8 @@ from flask_cors import CORS
 import os
 import pandas as pd
 import unicodedata
+import jwt
+from functools import wraps
 
 app = Flask(__name__)
 app.secret_key = 'sua_chave_secreta_aqui'  # Troque por uma chave forte
@@ -19,6 +21,9 @@ login_attempts = {}
 LOCKOUT_TIME = 300  # segundos
 MAX_ATTEMPTS = 3
 
+SECRET_KEY = 'sua_chave_secreta_super_segura'  # Troque por uma chave forte e secreta
+JWT_EXP_DELTA_SECONDS = 3600  # 1 hora
+
 def get_db_conn():
     return psycopg2.connect(
         host=DB_HOST,
@@ -30,6 +35,42 @@ def get_db_conn():
 
 def hash_password(senha):
     return hashlib.sha256(senha.encode()).hexdigest()
+
+# Função para gerar token JWT
+def gerar_token(usuario, nome, cargo):
+    payload = {
+        'usuario': usuario,
+        'nome': nome,
+        'cargo': cargo,
+        'exp': datetime.utcnow() + timedelta(seconds=JWT_EXP_DELTA_SECONDS)
+    }
+    return jwt.encode(payload, SECRET_KEY, algorithm='HS256')
+
+# Função para validar token JWT
+def validar_token(token):
+    try:
+        payload = jwt.decode(token, SECRET_KEY, algorithms=['HS256'])
+        return payload
+    except jwt.ExpiredSignatureError:
+        return None
+    except jwt.InvalidTokenError:
+        return None
+
+from functools import wraps
+
+def login_required_jwt(f):
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        auth_header = request.headers.get('Authorization')
+        if not auth_header or not auth_header.startswith('Bearer '):
+            return jsonify({'erro': 'Token não fornecido'}), 401
+        token = auth_header.split(' ')[1]
+        payload = validar_token(token)
+        if not payload:
+            return jsonify({'erro': 'Token inválido ou expirado'}), 401
+        g.usuario_jwt = payload  # Disponível na view
+        return f(*args, **kwargs)
+    return decorated_function
 
 @app.route('/api/login', methods=['POST'])
 def login():
@@ -60,11 +101,9 @@ def login():
         if row:
             senha_hash = row[1]
             if senha_hash == senha or senha_hash == hash_password(senha):
-                session['usuario'] = usuario
-                session['nome'] = row[2]
-                session['cargo'] = row[3]
                 login_attempts[key] = (0, now)
-                return jsonify({'mensagem': 'Login realizado', 'nome': row[2], 'cargo': row[3]})
+                token = gerar_token(usuario, row[2], row[3])
+                return jsonify({'mensagem': 'Login realizado', 'token': token, 'nome': row[2], 'cargo': row[3]})
         # Falha
         if key in login_attempts:
             login_attempts[key] = (login_attempts[key][0]+1, now)
@@ -75,9 +114,8 @@ def login():
         return jsonify({'erro': f'Erro no login: {str(e)}'}), 500
 
 @app.route('/api/resumo_os', methods=['GET'])
+@login_required_jwt
 def resumo_os():
-    if 'usuario' not in session:
-        return jsonify({'erro': 'Não autenticado'}), 401
     try:
         conn = get_db_conn()
         cur = conn.cursor()
@@ -102,9 +140,8 @@ def resumo_os():
         return jsonify({'erro': f'Erro ao buscar OS: {str(e)}'}), 500
 
 @app.route('/api/abrir_os', methods=['POST'])
+@login_required_jwt
 def abrir_os():
-    if 'usuario' not in session:
-        return jsonify({'erro': 'Não autenticado'}), 401
     data = request.json
     if not data:
         return jsonify({'erro': 'Dados inválidos'}), 400
@@ -133,9 +170,8 @@ def logout():
     return jsonify({'mensagem': 'Logout realizado'})
 
 @app.route('/api/os_todos', methods=['GET'])
+@login_required_jwt
 def os_todos():
-    if 'usuario' not in session:
-        return jsonify({'erro': 'Não autenticado'}), 401
     try:
         conn = get_db_conn()
         cur = conn.cursor()
@@ -150,9 +186,8 @@ def os_todos():
         return jsonify({'erro': f'Erro ao buscar OS: {str(e)}'}), 500
 
 @app.route('/api/os_detalhe/<int:os_id>', methods=['GET'])
+@login_required_jwt
 def os_detalhe(os_id):
-    if 'usuario' not in session:
-        return jsonify({'erro': 'Não autenticado'}), 401
     try:
         conn = get_db_conn()
         cur = conn.cursor()
@@ -169,36 +204,35 @@ def os_detalhe(os_id):
         return jsonify({'erro': f'Erro ao buscar detalhes da OS: {str(e)}'}), 500
 
 @app.route('/api/os_arquivos/<cliente>/<os_num>', methods=['GET'])
+@login_required_jwt
 def os_arquivos(cliente, os_num):
-    if 'usuario' not in session:
-        return jsonify({'erro': 'Não autenticado'}), 401
     def normalizar(s):
         return unicodedata.normalize('NFKD', s).encode('ASCII', 'ignore').decode('ASCII').replace(' ', '').lower()
     base_dir = 'C:/OS'
     # Busca tolerante para cliente
-    cliente_dirs = [d for d in os.listdir(base_dir) if os.path.isdir(os.path.join(base_dir, d))]
+    cliente_dirs = [d for d in os.listdir(base_dir) if os.path.isdir(os.path.join(base_dir, d))] if os.path.isdir(base_dir) else []
     cliente_norm = normalizar(cliente)
-    cliente_match = next((d for d in cliente_dirs if normalizar(d) == cliente_norm), None)
+    cliente_match = next((d for d in cliente_dirs or [] if normalizar(d) == cliente_norm), None)
     if not cliente_match:
         return jsonify({'arquivos': []})
     cliente_path = os.path.join(base_dir, cliente_match)
     # Busca tolerante para OS
-    os_dirs = [d for d in os.listdir(cliente_path) if os.path.isdir(os.path.join(cliente_path, d))]
+    os_dirs = [d for d in os.listdir(cliente_path) if os.path.isdir(os.path.join(cliente_path, d))] if os.path.isdir(cliente_path) else []
     os_norm = normalizar(os_num)
-    os_match = next((d for d in os_dirs if normalizar(d) == os_norm), None)
+    os_match = next((d for d in os_dirs or [] if normalizar(d) == os_norm), None)
     if not os_match:
         return jsonify({'arquivos': []})
     base_path = os.path.join(cliente_path, os_match)
     arquivos = []
-    for nome in os.listdir(base_path):
-        if nome.lower().endswith(('.xlsx', '.pdf')):
-            arquivos.append(nome)
+    if os.path.isdir(base_path):
+        for nome in os.listdir(base_path):
+            if nome.lower().endswith(('.xlsx', '.pdf')):
+                arquivos.append(nome)
     return jsonify({'arquivos': arquivos})
 
 @app.route('/api/download_arquivo/<cliente>/<os_num>/<nome_arquivo>', methods=['GET'])
+@login_required_jwt
 def download_arquivo(cliente, os_num, nome_arquivo):
-    if 'usuario' not in session:
-        return jsonify({'erro': 'Não autenticado'}), 401
     base_path = os.path.join('C:/OS', cliente, os_num)
     if not os.path.isdir(base_path):
         return jsonify({'erro': 'Arquivo não encontrado'}), 404
@@ -208,9 +242,8 @@ def download_arquivo(cliente, os_num, nome_arquivo):
         return jsonify({'erro': f'Erro ao baixar arquivo: {str(e)}'}), 500
 
 @app.route('/api/grafico_mensal/<int:ano>', methods=['GET'])
+@login_required_jwt
 def grafico_mensal(ano):
-    if 'usuario' not in session:
-        return jsonify({'erro': 'Não autenticado'}), 401
     try:
         conn = get_db_conn()
         df = pd.read_sql('SELECT "Saída equip.", "Valor" FROM os_cadastros', conn)
@@ -225,18 +258,23 @@ def grafico_mensal(ano):
         df['Valor'] = df['Valor'].fillna('0')
         df['valor_num'] = pd.to_numeric(df['Valor'].astype(str).str.replace('R$', '').str.replace('.', '').str.replace(',', '.'), errors='coerce')
         df['valor_num'] = df['valor_num'].fillna(0)
-        df_year = df[df['saida'].dt.year == ano]
-        mensal = df_year.groupby(df_year['saida'].dt.month)['valor_num'].sum().to_dict()
+        # Garante que 'saida' é datetime antes de usar .dt
+        if 'saida' in df.columns and not pd.api.types.is_datetime64_any_dtype(df['saida']):
+            df['saida'] = pd.to_datetime(df['saida'], errors='coerce')
+        if 'saida' in df.columns and pd.api.types.is_datetime64_any_dtype(df['saida']):
+            df_year = df[df['saida'].dt.year == ano]
+            mensal = df_year.groupby(df_year['saida'].dt.month)['valor_num'].sum().to_dict()
+        else:
+            mensal = {}
         meses = [str(m).zfill(2) for m in range(1, 13)]
-        valores = [float(mensal.get(m, 0.0)) for m in range(1, 13)]
+        valores = [mensal.get(m, 0.0) for m in range(1, 13)]
         return jsonify({'meses': meses, 'valores': valores})
     except Exception as e:
-        return jsonify({'erro': str(e)}), 500
+        return jsonify({'erro': f'Erro ao gerar gráfico: {str(e)}'}), 500
 
 @app.route('/api/grafico_comparativo/<int:ano1>/<int:ano2>', methods=['GET'])
+@login_required_jwt
 def grafico_comparativo(ano1, ano2):
-    if 'usuario' not in session:
-        return jsonify({'erro': 'Não autenticado'}), 401
     try:
         conn = get_db_conn()
         df = pd.read_sql('SELECT "Saída equip.", "Valor" FROM os_cadastros', conn)
@@ -248,18 +286,27 @@ def grafico_comparativo(ano1, ano2):
             meses = [str(m).zfill(2) for m in range(1, 13)]
             valores1 = [0.0 for _ in range(1, 13)]
             valores2 = [0.0 for _ in range(1, 13)]
-            return jsonify({'meses': meses, 'ano1': ano1, 'ano2': ano2, 'valores1': valores1, 'valores2': valores2})
+            return jsonify({'meses': meses, 'valores1': valores1, 'valores2': valores2})
         df['Valor'] = df['Valor'].fillna('0')
         df['valor_num'] = pd.to_numeric(df['Valor'].astype(str).str.replace('R$', '').str.replace('.', '').str.replace(',', '.'), errors='coerce')
         df['valor_num'] = df['valor_num'].fillna(0)
-        m1 = df[df['saida'].dt.year == ano1].groupby(df['saida'].dt.month)['valor_num'].sum().to_dict()
-        m2 = df[df['saida'].dt.year == ano2].groupby(df['saida'].dt.month)['valor_num'].sum().to_dict()
+        # Garante que 'saida' é datetime antes de usar .dt
+        if 'saida' in df.columns and not pd.api.types.is_datetime64_any_dtype(df['saida']):
+            df['saida'] = pd.to_datetime(df['saida'], errors='coerce')
+        if 'saida' in df.columns and pd.api.types.is_datetime64_any_dtype(df['saida']):
+            df1 = df[df['saida'].dt.year == ano1]
+            df2 = df[df['saida'].dt.year == ano2]
+            mensal1 = df1.groupby(df1['saida'].dt.month)['valor_num'].sum().to_dict()
+            mensal2 = df2.groupby(df2['saida'].dt.month)['valor_num'].sum().to_dict()
+        else:
+            mensal1 = {}
+            mensal2 = {}
         meses = [str(m).zfill(2) for m in range(1, 13)]
-        valores1 = [float(m1.get(m, 0.0)) for m in range(1, 13)]
-        valores2 = [float(m2.get(m, 0.0)) for m in range(1, 13)]
-        return jsonify({'meses': meses, 'ano1': ano1, 'ano2': ano2, 'valores1': valores1, 'valores2': valores2})
+        valores1 = [mensal1.get(m, 0.0) for m in range(1, 13)]
+        valores2 = [mensal2.get(m, 0.0) for m in range(1, 13)]
+        return jsonify({'meses': meses, 'valores1': valores1, 'valores2': valores2})
     except Exception as e:
-        return jsonify({'erro': str(e)}), 500
+        return jsonify({'erro': f'Erro ao gerar gráfico comparativo: {str(e)}'}), 500
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
