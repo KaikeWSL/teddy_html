@@ -103,6 +103,8 @@ def login():
             if senha_hash == senha or senha_hash == hash_password(senha):
                 login_attempts[key] = (0, now)
                 token = gerar_token(usuario, row[2], row[3])
+                if isinstance(token, bytes):
+                    token = token.decode('utf-8')
                 return jsonify({'mensagem': 'Login realizado', 'token': token, 'nome': row[2], 'cargo': row[3]})
         # Falha
         if key in login_attempts:

@@ -124,11 +124,13 @@
             border-radius: 8px;
             overflow: hidden;
             box-shadow: 0 2px 12px #00395f22;
+            font-size: 18px;
         }
         th, td {
             border: 1px solid #548dd4;
-            padding: 10px 8px;
+            padding: 16px 14px;
             text-align: left;
+            font-size: 18px;
         }
         th {
             background: linear-gradient(90deg, #375a7f 60%, #548dd4 100%);
@@ -157,7 +159,7 @@
         .detalhes-os h2 { margin-top: 0; color: #007acc; }
         .detalhes-grid {
             display: grid;
-            grid-template-columns: 1fr 2fr 1fr 2fr;
+            grid-template-columns: 1fr;
             gap: 8px 16px;
         }
         .detalhes-grid label { font-weight: bold; color: #007acc; margin: 0; }
@@ -450,9 +452,9 @@
     <h1>Login</h1>
     <form id="login-form">
         <label for="usuario">Usuário:</label>
-        <input type="text" id="usuario" name="usuario" required>
+        <input type="text" id="usuario" name="usuario" required autocomplete="username">
         <label for="senha">Senha:</label>
-        <input type="password" id="senha" name="senha" required>
+        <input type="password" id="senha" name="senha" required autocomplete="current-password">
         <button type="submit">Entrar</button>
         <div id="login-erro"></div>
     </form>
@@ -585,15 +587,15 @@
         e.preventDefault();
         const usuario = document.getElementById('usuario').value;
         const senha = document.getElementById('senha').value;
-        fetch('http://localhost:5000/api/login', {
+        fetch('https://teddy-html.onrender.com/api/login', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ usuario, senha }),
-            credentials: 'include'
+            body: JSON.stringify({ usuario, senha })
         })
         .then(resp => resp.json().then(data => ({status: resp.status, data})))
         .then(res => {
-            if (res.status === 200) {
+            if (res.status === 200 && res.data.token) {
+                setToken(res.data.token);
                 mostrarPainel();
                 document.getElementById('login-erro').textContent = '';
             } else {
@@ -605,7 +607,7 @@
         });
     };
     function carregarOS() {
-        fetch('http://localhost:5000/api/os_todos', { credentials: 'include' })
+        fetchAuth('https://teddy-html.onrender.com/api/os_todos')
             .then(resp => resp.json())
             .then(data => {
                 if (data.erro) {
@@ -723,7 +725,7 @@
         document.getElementById('detalhes-os').classList.add('hidden');
     }
     function mostrarDetalhes(os_id) {
-        fetch(`http://localhost:5000/api/os_detalhe/${os_id}`, { credentials: 'include' })
+        fetchAuth(`https://teddy-html.onrender.com/api/os_detalhe/${os_id}`)
             .then(resp => resp.json())
             .then(data => {
                 if (data.erro) {
@@ -732,13 +734,17 @@
                 }
                 const grid = document.getElementById('detalhes-grid');
                 grid.innerHTML = '';
-                Object.entries(data).forEach(([k,v]) => {
-                    const label = document.createElement('label');
-                    label.textContent = k+':';
-                    const span = document.createElement('span');
-                    span.textContent = v||'';
-                    grid.appendChild(label);
-                    grid.appendChild(span);
+                ordemColunasResumo.forEach(campo => {
+                    // Procura o campo ignorando maiúsculas/minúsculas e acentos
+                    const key = Object.keys(data).find(k => removerAcentos(k).toLowerCase() === removerAcentos(campo).toLowerCase());
+                    if (key) {
+                        const label = document.createElement('label');
+                        label.textContent = campo + ':';
+                        const span = document.createElement('span');
+                        span.textContent = data[key] || '';
+                        grid.appendChild(label);
+                        grid.appendChild(span);
+                    }
                 });
                 document.getElementById('detalhes-os').classList.remove('hidden');
                 window.scrollTo({top:0,behavior:'smooth'});
@@ -760,8 +766,8 @@
     }
     function logout() {
         fecharFiltros();
-        fetch('http://localhost:5000/api/logout', { method: 'POST', credentials: 'include' })
-            .then(() => mostrarLogin());
+        removeToken();
+        mostrarLogin();
     }
     function preencherAbrirOSList() {
         const lista = document.getElementById('abrir-os-list');
@@ -798,7 +804,7 @@
         // Buscar arquivos
         const clienteKey = Object.keys(osObj).find(k => k.toLowerCase() === 'cliente');
         const osKey = Object.keys(osObj).find(k => k.toLowerCase() === 'os');
-        fetch(`http://localhost:5000/api/os_arquivos/${encodeURIComponent(osObj[clienteKey])}/${encodeURIComponent(osObj[osKey])}` , { credentials: 'include' })
+        fetchAuth(`https://teddy-html.onrender.com/api/os_arquivos/${encodeURIComponent(osObj[clienteKey])}/${encodeURIComponent(osObj[osKey])}`)
             .then(resp => resp.json())
             .then(data => {
                 if (!data.arquivos || data.arquivos.length === 0) {
@@ -808,16 +814,16 @@
                 let ex = data.arquivos.filter(a=>a.endsWith('.xlsx'));
                 let pdf = data.arquivos.filter(a=>a.endsWith('.pdf'));
                 let html = '<div style="display:flex;gap:20px;flex-wrap:wrap;"><div><b>Excel</b><ul>';
-                ex.forEach(f=>{ html += `<li><a href="http://localhost:5000/api/download_arquivo/${encodeURIComponent(osObj[clienteKey])}/${encodeURIComponent(osObj[osKey])}/${encodeURIComponent(f)}" target="_blank">${f}</a></li>`; });
+                ex.forEach(f=>{ html += `<li><a href="https://teddy-html.onrender.com/api/download_arquivo/${encodeURIComponent(osObj[clienteKey])}/${encodeURIComponent(osObj[osKey])}/${encodeURIComponent(f)}" target="_blank">${f}</a></li>`; });
                 html += '</ul></div><div><b>PDF</b><ul>';
-                pdf.forEach(f=>{ html += `<li><a href="http://localhost:5000/api/download_arquivo/${encodeURIComponent(osObj[clienteKey])}/${encodeURIComponent(osObj[osKey])}/${encodeURIComponent(f)}" target="_blank">${f}</a></li>`; });
+                pdf.forEach(f=>{ html += `<li><a href="https://teddy-html.onrender.com/api/download_arquivo/${encodeURIComponent(osObj[clienteKey])}/${encodeURIComponent(osObj[osKey])}/${encodeURIComponent(f)}" target="_blank">${f}</a></li>`; });
                 html += '</ul></div></div>';
                 document.getElementById('abrir-arquivos').innerHTML = html;
             });
     }
     // Função utilitária para remover acentos
     function removerAcentos(str) {
-        return str.normalize('NFD').replace(/[0-\u017F\u0300-\u036f]/g, "");
+        return str.normalize('NFD').replace(/[\u0300-\u036f]/g, "");
     }
     function preencherAnosGraficos() {
         // Preencher selects de anos manualmente para teste
@@ -841,7 +847,7 @@
     function carregarGraficoMensal() {
         const ano = document.getElementById('ano-grafico-mensal').value;
         if (!ano) return;
-        fetch(`http://localhost:5000/api/grafico_mensal/${ano}`, { credentials: 'include' })
+        fetchAuth(`https://teddy-html.onrender.com/api/grafico_mensal/${ano}`)
             .then(resp => resp.json())
             .then(data => {
                 if (data.erro) {
@@ -856,7 +862,7 @@
         const ano1 = document.getElementById('ano1-grafico').value;
         const ano2 = document.getElementById('ano2-grafico').value;
         if (!ano1 || !ano2) return;
-        fetch(`http://localhost:5000/api/grafico_comparativo/${ano1}/${ano2}`, { credentials: 'include' })
+        fetchAuth(`https://teddy-html.onrender.com/api/grafico_comparativo/${ano1}/${ano2}`)
             .then(resp => resp.json())
             .then(data => {
                 if (data.erro) {
@@ -864,7 +870,7 @@
                     return;
                 }
                 document.getElementById('erro-grafico').textContent = '';
-                renderGraficoComparativo(data.meses, data.valores1, data.valores2, data.ano1, data.ano2);
+                renderGraficoComparativo(data.meses, data.valores1, data.valores2, ano1, ano2);
             });
     }
     function renderGraficoMensal(meses, valores, ano) {
@@ -1071,6 +1077,22 @@
             <button class="${document.getElementById('aba-abrir').classList.contains('aba-ativa') ? 'aba-ativa' : ''}" onclick="mostrarAba('abrir')">Abrir OS</button>
             <button class="${document.getElementById('aba-graficos').classList.contains('aba-ativa') ? 'aba-ativa' : ''}" onclick="mostrarAba('graficos')">Gráficos</button>
         `;
+    }
+    // Salva e recupera o token JWT
+    function setToken(token) {
+        localStorage.setItem('jwt_token', token);
+    }
+    function getToken() {
+        return localStorage.getItem('jwt_token');
+    }
+    function removeToken() {
+        localStorage.removeItem('jwt_token');
+    }
+    function fetchAuth(url, options = {}) {
+        const token = getToken();
+        options.headers = options.headers || {};
+        if (token) options.headers['Authorization'] = 'Bearer ' + token;
+        return fetch(url, options);
     }
 </script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
