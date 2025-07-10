@@ -19,6 +19,7 @@ const pool = new Pool({
   database: 'neondb',
   password: 'npg_91HbcvdzrFLw',
   port: 5432,
+  ssl: { rejectUnauthorized: false } // <-- Adicione esta linha!
 });
 
 // Middleware para autenticação JWT
