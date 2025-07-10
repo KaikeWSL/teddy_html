@@ -1,5 +1,6 @@
 from flask import Flask, request, jsonify, session, send_from_directory, g
 import psycopg2
+from psycopg2 import pool
 import hashlib
 from datetime import datetime, timedelta
 from config import DB_HOST, DB_PORT, DB_NAME, DB_USER, DB_PASSWORD
@@ -9,6 +10,13 @@ import pandas as pd
 import unicodedata
 import jwt
 from functools import wraps
+import threading
+import time
+import logging
+
+# Configuração de logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 app = Flask(__name__)
 app.secret_key = 'sua_chave_secreta_aqui'  # Troque por uma chave forte
@@ -24,14 +32,129 @@ MAX_ATTEMPTS = 3
 SECRET_KEY = 'sua_chave_secreta_super_segura'  # Troque por uma chave forte e secreta
 JWT_EXP_DELTA_SECONDS = 3600  # 1 hora
 
+# Configuração do pool de conexões
+connection_pool = None
+pool_lock = threading.Lock()
+
+def create_connection_pool():
+    """Cria o pool de conexões com configurações otimizadas"""
+    global connection_pool
+    try:
+        connection_pool = psycopg2.pool.ThreadedConnectionPool(
+            minconn=2,  # Mínimo de conexões
+            maxconn=20,  # Máximo de conexões
+            host=DB_HOST,
+            port=DB_PORT,
+            database=DB_NAME,
+            user=DB_USER,
+            password=DB_PASSWORD,
+            # Configurações para manter conexão viva
+            keepalives=1,
+            keepalives_idle=30,
+            keepalives_interval=10,
+            keepalives_count=5,
+            # Timeout de conexão
+            connect_timeout=10
+        )
+        logger.info("Pool de conexões criado com sucesso")
+        return True
+    except Exception as e:
+        logger.error(f"Erro ao criar pool de conexões: {str(e)}")
+        return False
+
 def get_db_conn():
-    return psycopg2.connect(
-        host=DB_HOST,
-        port=DB_PORT,
-        dbname=DB_NAME,
-        user=DB_USER,
-        password=DB_PASSWORD
-    )
+    """Obtém uma conexão do pool com retry automático"""
+    global connection_pool
+    max_retries = 3
+    retry_count = 0
+    
+    while retry_count < max_retries:
+        try:
+            with pool_lock:
+                if connection_pool is None:
+                    logger.info("Recriando pool de conexões...")
+                    if not create_connection_pool():
+                        raise Exception("Falha ao criar pool de conexões")
+                
+                conn = connection_pool.getconn()
+                
+                # Testa a conexão
+                if conn.closed != 0:
+                    logger.warning("Conexão fechada detectada, obtendo nova conexão...")
+                    connection_pool.putconn(conn, close=True)
+                    conn = connection_pool.getconn()
+                
+                # Teste simples para verificar se a conexão está ativa
+                with conn.cursor() as cur:
+                    cur.execute("SELECT 1")
+                    cur.fetchone()
+                
+                return conn
+                
+        except Exception as e:
+            logger.error(f"Erro ao obter conexão (tentativa {retry_count + 1}): {str(e)}")
+            retry_count += 1
+            
+            if retry_count < max_retries:
+                # Tenta recriar o pool
+                with pool_lock:
+                    if connection_pool:
+                        try:
+                            connection_pool.closeall()
+                        except:
+                            pass
+                        connection_pool = None
+                
+                time.sleep(1)  # Aguarda 1 segundo antes de tentar novamente
+            else:
+                raise Exception(f"Falha ao obter conexão após {max_retries} tentativas")
+
+def return_db_conn(conn):
+    """Retorna uma conexão para o pool"""
+    global connection_pool
+    if connection_pool and conn:
+        try:
+            connection_pool.putconn(conn)
+        except Exception as e:
+            logger.error(f"Erro ao retornar conexão: {str(e)}")
+
+def close_db_conn(conn):
+    """Fecha uma conexão defeituosa"""
+    global connection_pool
+    if connection_pool and conn:
+        try:
+            connection_pool.putconn(conn, close=True)
+        except Exception as e:
+            logger.error(f"Erro ao fechar conexão: {str(e)}")
+
+def health_check():
+    """Verifica a saúde do pool de conexões periodicamente"""
+    while True:
+        try:
+            time.sleep(300)  # Verifica a cada 5 minutos
+            
+            with pool_lock:
+                if connection_pool:
+                    # Testa uma conexão do pool
+                    conn = None
+                    try:
+                        conn = connection_pool.getconn()
+                        with conn.cursor() as cur:
+                            cur.execute("SELECT version()")
+                            cur.fetchone()
+                        connection_pool.putconn(conn)
+                        logger.info("Health check: Pool de conexões OK")
+                    except Exception as e:
+                        logger.error(f"Health check falhou: {str(e)}")
+                        if conn:
+                            connection_pool.putconn(conn, close=True)
+                        
+        except Exception as e:
+            logger.error(f"Erro no health check: {str(e)}")
+
+# Inicia o thread de monitoramento
+health_thread = threading.Thread(target=health_check, daemon=True)
+health_thread.start()
 
 def hash_password(senha):
     return hashlib.sha256(senha.encode()).hexdigest()
@@ -55,8 +178,6 @@ def validar_token(token):
         return None
     except jwt.InvalidTokenError:
         return None
-
-from functools import wraps
 
 def login_required_jwt(f):
     @wraps(f)
@@ -91,13 +212,14 @@ def login():
         elif (now - last_time).total_seconds() >= LOCKOUT_TIME:
             login_attempts[key] = (0, now)
 
+    conn = None
     try:
         conn = get_db_conn()
         cur = conn.cursor()
         cur.execute('SELECT usuario, senha, nome, cargo FROM usuarios WHERE usuario = %s', (usuario,))
         row = cur.fetchone()
         cur.close()
-        conn.close()
+        
         if row:
             senha_hash = row[1]
             if senha_hash == senha or senha_hash == hash_password(senha):
@@ -106,6 +228,7 @@ def login():
                 if isinstance(token, bytes):
                     token = token.decode('utf-8')
                 return jsonify({'mensagem': 'Login realizado', 'token': token, 'nome': row[2], 'cargo': row[3]})
+        
         # Falha
         if key in login_attempts:
             login_attempts[key] = (login_attempts[key][0]+1, now)
@@ -113,18 +236,24 @@ def login():
             login_attempts[key] = (1, now)
         return jsonify({'erro': 'Usuário ou senha inválidos.'}), 401
     except Exception as e:
+        if conn:
+            close_db_conn(conn)
         return jsonify({'erro': f'Erro no login: {str(e)}'}), 500
+    finally:
+        if conn:
+            return_db_conn(conn)
 
 @app.route('/api/resumo_os', methods=['GET'])
 @login_required_jwt
 def resumo_os():
+    conn = None
     try:
         conn = get_db_conn()
         cur = conn.cursor()
         cur.execute('SELECT "Cliente", "Modelo", "OS", "Entrada", "Valor", "Saída", "Técnico", id FROM os_cadastros ORDER BY id DESC LIMIT 20')
         rows = cur.fetchall()
         cur.close()
-        conn.close()
+        
         resultado = [
             {
                 'Cliente': r[0],
@@ -139,7 +268,12 @@ def resumo_os():
         ]
         return jsonify(resultado)
     except Exception as e:
+        if conn:
+            close_db_conn(conn)
         return jsonify({'erro': f'Erro ao buscar OS: {str(e)}'}), 500
+    finally:
+        if conn:
+            return_db_conn(conn)
 
 @app.route('/api/abrir_os', methods=['POST'])
 @login_required_jwt
@@ -154,6 +288,8 @@ def abrir_os():
     valor = data.get('Valor')
     saida = data.get('Saida')
     tecnico = data.get('Tecnico')
+    
+    conn = None
     try:
         conn = get_db_conn()
         cur = conn.cursor()
@@ -161,10 +297,15 @@ def abrir_os():
                     (cliente, modelo, os_num, entrada, valor, saida, tecnico))
         conn.commit()
         cur.close()
-        conn.close()
         return jsonify({'mensagem': 'OS aberta com sucesso!'})
     except Exception as e:
+        if conn:
+            conn.rollback()
+            close_db_conn(conn)
         return jsonify({'erro': f'Erro ao abrir OS: {str(e)}'}), 500
+    finally:
+        if conn:
+            return_db_conn(conn)
 
 @app.route('/api/logout', methods=['POST'])
 def logout():
@@ -174,6 +315,7 @@ def logout():
 @app.route('/api/os_todos', methods=['GET'])
 @login_required_jwt
 def os_todos():
+    conn = None
     try:
         conn = get_db_conn()
         cur = conn.cursor()
@@ -181,15 +323,21 @@ def os_todos():
         colnames = [desc[0] for desc in cur.description]
         rows = cur.fetchall()
         cur.close()
-        conn.close()
+        
         resultado = [dict(zip(colnames, r)) for r in rows]
         return jsonify(resultado)
     except Exception as e:
+        if conn:
+            close_db_conn(conn)
         return jsonify({'erro': f'Erro ao buscar OS: {str(e)}'}), 500
+    finally:
+        if conn:
+            return_db_conn(conn)
 
 @app.route('/api/os_detalhe/<int:os_id>', methods=['GET'])
 @login_required_jwt
 def os_detalhe(os_id):
+    conn = None
     try:
         conn = get_db_conn()
         cur = conn.cursor()
@@ -197,13 +345,18 @@ def os_detalhe(os_id):
         colnames = [desc[0] for desc in cur.description]
         row = cur.fetchone()
         cur.close()
-        conn.close()
+        
         if row:
             return jsonify(dict(zip(colnames, row)))
         else:
             return jsonify({'erro': 'OS não encontrada'}), 404
     except Exception as e:
+        if conn:
+            close_db_conn(conn)
         return jsonify({'erro': f'Erro ao buscar detalhes da OS: {str(e)}'}), 500
+    finally:
+        if conn:
+            return_db_conn(conn)
 
 @app.route('/api/os_arquivos/<cliente>/<os_num>', methods=['GET'])
 @login_required_jwt
@@ -228,7 +381,7 @@ def os_arquivos(cliente, os_num):
     arquivos = []
     if os.path.isdir(base_path):
         for nome in os.listdir(base_path):
-            if nome.lower().endswith(('.xlsx', '.pdf')):
+            if nome.lower().endswith(('.pdf')):
                 arquivos.append(nome)
     return jsonify({'arquivos': arquivos})
 
@@ -246,10 +399,11 @@ def download_arquivo(cliente, os_num, nome_arquivo):
 @app.route('/api/grafico_mensal/<int:ano>', methods=['GET'])
 @login_required_jwt
 def grafico_mensal(ano):
+    conn = None
     try:
         conn = get_db_conn()
         df = pd.read_sql('SELECT "Saída equip.", "Valor" FROM os_cadastros', conn)
-        conn.close()
+        
         df = df.dropna(subset=["Saída equip.", "Valor"])  # Remove linhas sem data ou valor
         df['saida'] = pd.to_datetime(df['Saída equip.'], dayfirst=True, errors='coerce')
         df = df.dropna(subset=['saida'])
@@ -272,15 +426,21 @@ def grafico_mensal(ano):
         valores = [mensal.get(m, 0.0) for m in range(1, 13)]
         return jsonify({'meses': meses, 'valores': valores})
     except Exception as e:
+        if conn:
+            close_db_conn(conn)
         return jsonify({'erro': f'Erro ao gerar gráfico: {str(e)}'}), 500
+    finally:
+        if conn:
+            return_db_conn(conn)
 
 @app.route('/api/grafico_comparativo/<int:ano1>/<int:ano2>', methods=['GET'])
 @login_required_jwt
 def grafico_comparativo(ano1, ano2):
+    conn = None
     try:
         conn = get_db_conn()
         df = pd.read_sql('SELECT "Saída equip.", "Valor" FROM os_cadastros', conn)
-        conn.close()
+        
         df = df.dropna(subset=["Saída equip.", "Valor"])  # Remove linhas sem data ou valor
         df['saida'] = pd.to_datetime(df['Saída equip.'], dayfirst=True, errors='coerce')
         df = df.dropna(subset=['saida'])
@@ -308,7 +468,44 @@ def grafico_comparativo(ano1, ano2):
         valores2 = [mensal2.get(m, 0.0) for m in range(1, 13)]
         return jsonify({'meses': meses, 'valores1': valores1, 'valores2': valores2})
     except Exception as e:
+        if conn:
+            close_db_conn(conn)
         return jsonify({'erro': f'Erro ao gerar gráfico comparativo: {str(e)}'}), 500
+    finally:
+        if conn:
+            return_db_conn(conn)
+
+@app.route('/api/health', methods=['GET'])
+def health():
+    """Endpoint para verificar a saúde da aplicação e do banco"""
+    try:
+        conn = get_db_conn()
+        cur = conn.cursor()
+        cur.execute('SELECT 1')
+        cur.fetchone()
+        cur.close()
+        return_db_conn(conn)
+        return jsonify({'status': 'OK', 'database': 'connected'})
+    except Exception as e:
+        return jsonify({'status': 'ERROR', 'database': 'disconnected', 'error': str(e)}), 500
+
+# Cleanup do pool quando a aplicação é finalizada
+@app.teardown_appcontext
+def cleanup(error):
+    pass
+
+def cleanup_pool():
+    global connection_pool
+    if connection_pool:
+        connection_pool.closeall()
+
+import atexit
+atexit.register(cleanup_pool)
 
 if __name__ == '__main__':
+    # Inicializa o pool de conexões
+    if not create_connection_pool():
+        logger.error("Falha ao inicializar o pool de conexões")
+        exit(1)
+    
     app.run(host='0.0.0.0', port=5000)
