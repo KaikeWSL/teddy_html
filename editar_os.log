@@ -1,0 +1,1820 @@
+2025-07-01 08:09:47,813 - main.frontend.editar_os_page.EditarOSPage - INFO - Carregados 485 registros com sucesso
+Arquivo: editar_os_page.py:312
+Função: _on_data_loaded
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-01 08:09:48,130 - main.frontend.editar_os_page.EditarOSPage - INFO - OS 0 carregada com sucesso
+Arquivo: editar_os_page.py:440
+Função: _load_os
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-01 08:27:30,617 - main.frontend.editar_os_page.EditarOSPage - INFO - Carregados 486 registros com sucesso
+Arquivo: editar_os_page.py:312
+Função: _on_data_loaded
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-01 08:27:30,932 - main.frontend.editar_os_page.EditarOSPage - INFO - OS 0 carregada com sucesso
+Arquivo: editar_os_page.py:440
+Função: _load_os
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-01 08:27:57,941 - main.frontend.editar_os_page.EditarOSPage - INFO - Carregados 486 registros com sucesso
+Arquivo: editar_os_page.py:312
+Função: _on_data_loaded
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-01 08:27:58,255 - main.frontend.editar_os_page.EditarOSPage - INFO - OS 0 carregada com sucesso
+Arquivo: editar_os_page.py:440
+Função: _load_os
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-01 09:01:45,755 - main.frontend.editar_os_page.EditarOSPage - INFO - Carregados 486 registros com sucesso
+Arquivo: editar_os_page.py:312
+Função: _on_data_loaded
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-01 09:01:46,079 - main.frontend.editar_os_page.EditarOSPage - INFO - OS 0 carregada com sucesso
+Arquivo: editar_os_page.py:440
+Função: _load_os
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-01 10:06:49,965 - main.frontend.editar_os_page.EditarOSPage - INFO - Carregados 486 registros com sucesso
+Arquivo: editar_os_page.py:312
+Função: _on_data_loaded
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-01 10:06:50,315 - main.frontend.editar_os_page.EditarOSPage - INFO - OS 0 carregada com sucesso
+Arquivo: editar_os_page.py:440
+Função: _load_os
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-01 10:42:01,439 - main.frontend.editar_os_page.EditarOSPage - INFO - Carregados 486 registros com sucesso
+Arquivo: editar_os_page.py:325
+Função: _on_data_loaded
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-01 10:42:01,759 - main.frontend.editar_os_page.EditarOSPage - INFO - OS 0 carregada com sucesso
+Arquivo: editar_os_page.py:456
+Função: _load_os
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-01 10:42:22,334 - main.frontend.editar_os_page.EditarOSPage - INFO - OS 4196 carregada com sucesso
+Arquivo: editar_os_page.py:456
+Função: _load_os
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-01 10:46:58,564 - main.frontend.editar_os_page.EditarOSPage - INFO - Carregados 486 registros com sucesso
+Arquivo: editar_os_page.py:325
+Função: _on_data_loaded
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-01 10:46:58,877 - main.frontend.editar_os_page.EditarOSPage - INFO - OS 0 carregada com sucesso
+Arquivo: editar_os_page.py:464
+Função: _load_os
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-01 10:47:09,312 - main.frontend.editar_os_page.EditarOSPage - INFO - OS 4489 carregada com sucesso
+Arquivo: editar_os_page.py:464
+Função: _load_os
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-01 10:47:24,441 - main.frontend.editar_os_page.EditarOSPage - INFO - OS 5348 carregada com sucesso
+Arquivo: editar_os_page.py:464
+Função: _load_os
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-01 10:48:16,402 - main.frontend.editar_os_page.EditarOSPage - INFO - Carregados 486 registros com sucesso
+Arquivo: editar_os_page.py:325
+Função: _on_data_loaded
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-01 10:48:16,702 - main.frontend.editar_os_page.EditarOSPage - INFO - OS 0 carregada com sucesso
+Arquivo: editar_os_page.py:464
+Função: _load_os
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-01 10:48:19,505 - main.frontend.editar_os_page.EditarOSPage - INFO - OS 4555 carregada com sucesso
+Arquivo: editar_os_page.py:464
+Função: _load_os
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-01 10:52:21,560 - main.frontend.editar_os_page.EditarOSPage - INFO - Carregados 486 registros com sucesso
+Arquivo: editar_os_page.py:326
+Função: _on_data_loaded
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-01 10:52:21,880 - main.frontend.editar_os_page.EditarOSPage - INFO - OS 0 carregada com sucesso
+Arquivo: editar_os_page.py:465
+Função: _load_os
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-01 10:52:26,795 - main.frontend.editar_os_page.EditarOSPage - INFO - OS 4531 carregada com sucesso
+Arquivo: editar_os_page.py:465
+Função: _load_os
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-01 10:52:39,369 - main.frontend.editar_os_page.EditarOSPage - INFO - OS 5100 carregada com sucesso
+Arquivo: editar_os_page.py:465
+Função: _load_os
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-01 10:52:40,916 - main.frontend.editar_os_page.EditarOSPage - INFO - OS 51616 carregada com sucesso
+Arquivo: editar_os_page.py:465
+Função: _load_os
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-01 10:52:42,566 - main.frontend.editar_os_page.EditarOSPage - INFO - OS 51616 carregada com sucesso
+Arquivo: editar_os_page.py:465
+Função: _load_os
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-01 10:55:09,401 - main.frontend.editar_os_page.EditarOSPage - INFO - Carregados 486 registros com sucesso
+Arquivo: editar_os_page.py:326
+Função: _on_data_loaded
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-01 10:55:09,718 - main.frontend.editar_os_page.EditarOSPage - INFO - OS 0 carregada com sucesso
+Arquivo: editar_os_page.py:460
+Função: _load_os
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-01 10:55:18,084 - main.frontend.editar_os_page.EditarOSPage - INFO - OS 4200 carregada com sucesso
+Arquivo: editar_os_page.py:460
+Função: _load_os
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-01 10:55:25,054 - main.frontend.editar_os_page.EditarOSPage - INFO - Carregados 486 registros com sucesso
+Arquivo: editar_os_page.py:326
+Função: _on_data_loaded
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-01 10:55:25,367 - main.frontend.editar_os_page.EditarOSPage - INFO - OS 0 carregada com sucesso
+Arquivo: editar_os_page.py:460
+Função: _load_os
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-01 10:55:30,991 - main.frontend.editar_os_page.EditarOSPage - INFO - OS 4555 carregada com sucesso
+Arquivo: editar_os_page.py:460
+Função: _load_os
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-01 10:55:34,241 - main.frontend.editar_os_page.EditarOSPage - ERROR - Erro em salvar OS 4555: Erros de validação encontrados:
+data_pag2: Data inválida. Use formato YYYY-MM-DD ou DD/MM/YYYY
+data_pag3: Data inválida. Use formato YYYY-MM-DD ou DD/MM/YYYY
+vezes: Número de parcelas inválido
+Arquivo: editar_os_page.py:420
+Função: _handle_error
+Thread: MainThread
+Processo: MainProcess
+---
+Traceback (most recent call last):
+  File "c:\Users\z223301\Downloads\Software\main\frontend\editar_os_page.py", line 600, in _save_to_database
+    raise ValueError(
+ValueError: Erros de validação encontrados:
+data_pag2: Data inválida. Use formato YYYY-MM-DD ou DD/MM/YYYY
+data_pag3: Data inválida. Use formato YYYY-MM-DD ou DD/MM/YYYY
+vezes: Número de parcelas inválido
+2025-07-01 10:55:48,860 - main.frontend.editar_os_page.EditarOSPage - ERROR - Erro ao salvar alterações: Erros de validação encontrados:
+data_pag2: Data inválida. Use formato YYYY-MM-DD ou DD/MM/YYYY
+data_pag3: Data inválida. Use formato YYYY-MM-DD ou DD/MM/YYYY
+vezes: Número de parcelas inválido
+Arquivo: editar_os_page.py:681
+Função: _save_changes
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-01 10:55:52,192 - main.frontend.editar_os_page.EditarOSPage - ERROR - Erro em salvar OS 4555: Erros de validação encontrados:
+data_pag2: Data inválida. Use formato YYYY-MM-DD ou DD/MM/YYYY
+data_pag3: Data inválida. Use formato YYYY-MM-DD ou DD/MM/YYYY
+vezes: Número de parcelas inválido
+Arquivo: editar_os_page.py:420
+Função: _handle_error
+Thread: MainThread
+Processo: MainProcess
+---
+Traceback (most recent call last):
+  File "c:\Users\z223301\Downloads\Software\main\frontend\editar_os_page.py", line 600, in _save_to_database
+    raise ValueError(
+ValueError: Erros de validação encontrados:
+data_pag2: Data inválida. Use formato YYYY-MM-DD ou DD/MM/YYYY
+data_pag3: Data inválida. Use formato YYYY-MM-DD ou DD/MM/YYYY
+vezes: Número de parcelas inválido
+2025-07-01 10:55:53,422 - main.frontend.editar_os_page.EditarOSPage - ERROR - Erro ao salvar alterações: Erros de validação encontrados:
+data_pag2: Data inválida. Use formato YYYY-MM-DD ou DD/MM/YYYY
+data_pag3: Data inválida. Use formato YYYY-MM-DD ou DD/MM/YYYY
+vezes: Número de parcelas inválido
+Arquivo: editar_os_page.py:681
+Função: _save_changes
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-01 12:27:14,275 - main.frontend.editar_os_page.EditarOSPage - INFO - Carregados 486 registros com sucesso
+Arquivo: editar_os_page.py:326
+Função: _on_data_loaded
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-01 12:27:14,584 - main.frontend.editar_os_page.EditarOSPage - INFO - OS 0 carregada com sucesso
+Arquivo: editar_os_page.py:460
+Função: _load_os
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-01 12:27:19,958 - main.frontend.editar_os_page.EditarOSPage - INFO - OS 4555 carregada com sucesso
+Arquivo: editar_os_page.py:460
+Função: _load_os
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-01 12:27:26,079 - main.frontend.editar_os_page.EditarOSPage - ERROR - Erro em salvar OS 4555: Erros de validação encontrados:
+data_pag2: Data inválida. Use formato YYYY-MM-DD ou DD/MM/YYYY
+data_pag3: Data inválida. Use formato YYYY-MM-DD ou DD/MM/YYYY
+vezes: Número de parcelas inválido
+Arquivo: editar_os_page.py:420
+Função: _handle_error
+Thread: MainThread
+Processo: MainProcess
+---
+Traceback (most recent call last):
+  File "c:\Users\z223301\Downloads\Software\main\frontend\editar_os_page.py", line 600, in _save_to_database
+    raise ValueError(
+ValueError: Erros de validação encontrados:
+data_pag2: Data inválida. Use formato YYYY-MM-DD ou DD/MM/YYYY
+data_pag3: Data inválida. Use formato YYYY-MM-DD ou DD/MM/YYYY
+vezes: Número de parcelas inválido
+2025-07-01 12:27:30,481 - main.frontend.editar_os_page.EditarOSPage - ERROR - Erro ao salvar alterações: Erros de validação encontrados:
+data_pag2: Data inválida. Use formato YYYY-MM-DD ou DD/MM/YYYY
+data_pag3: Data inválida. Use formato YYYY-MM-DD ou DD/MM/YYYY
+vezes: Número de parcelas inválido
+Arquivo: editar_os_page.py:689
+Função: _save_changes
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-01 12:35:21,362 - main.frontend.editar_os_page.EditarOSPage - INFO - Carregados 486 registros com sucesso
+Arquivo: editar_os_page.py:326
+Função: _on_data_loaded
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-01 12:35:21,684 - main.frontend.editar_os_page.EditarOSPage - INFO - OS 0 carregada com sucesso
+Arquivo: editar_os_page.py:460
+Função: _load_os
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-01 12:35:30,642 - main.frontend.editar_os_page.EditarOSPage - INFO - OS 404040 carregada com sucesso
+Arquivo: editar_os_page.py:460
+Função: _load_os
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-01 12:35:38,269 - main.frontend.editar_os_page.EditarOSPage - ERROR - Erro em salvar OS 404040: Erros de validação encontrados:
+valor: Valor inválido
+Arquivo: editar_os_page.py:420
+Função: _handle_error
+Thread: MainThread
+Processo: MainProcess
+---
+Traceback (most recent call last):
+  File "c:\Users\z223301\Downloads\Software\main\frontend\editar_os_page.py", line 600, in _save_to_database
+    raise ValueError(
+ValueError: Erros de validação encontrados:
+valor: Valor inválido
+2025-07-01 12:35:46,024 - main.frontend.editar_os_page.EditarOSPage - ERROR - Erro ao salvar alterações: Erros de validação encontrados:
+valor: Valor inválido
+Arquivo: editar_os_page.py:697
+Função: _save_changes
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-01 12:40:43,032 - main.frontend.editar_os_page.EditarOSPage - INFO - Carregados 486 registros com sucesso
+Arquivo: editar_os_page.py:325
+Função: _on_data_loaded
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-01 12:40:43,344 - main.frontend.editar_os_page.EditarOSPage - INFO - OS 0 carregada com sucesso
+Arquivo: editar_os_page.py:459
+Função: _load_os
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-01 12:40:47,149 - main.frontend.editar_os_page.EditarOSPage - INFO - OS 404040 carregada com sucesso
+Arquivo: editar_os_page.py:459
+Função: _load_os
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-01 12:40:52,770 - main.frontend.editar_os_page.EditarOSPage - ERROR - Erro em salvar OS 404040: column "Gerente" of relation "os_cadastros" does not exist
+LINE 6:             "Técnico", "Gerente", status, avaliacao_tecnica,...
+                               ^
+
+Arquivo: editar_os_page.py:419
+Função: _handle_error
+Thread: MainThread
+Processo: MainProcess
+---
+Traceback (most recent call last):
+  File "c:\Users\z223301\Downloads\Software\main\frontend\editar_os_page.py", line 637, in _save_to_database
+    insert_os(
+  File "c:\Users\z223301\Downloads\Software\main\backend\storage_db.py", line 176, in insert_os
+    cur.execute(query, params)
+psycopg2.errors.UndefinedColumn: column "Gerente" of relation "os_cadastros" does not exist
+LINE 6:             "Técnico", "Gerente", status, avaliacao_tecnica,...
+                               ^
+
+2025-07-01 12:40:56,596 - main.frontend.editar_os_page.EditarOSPage - ERROR - Erro ao salvar alterações: column "Gerente" of relation "os_cadastros" does not exist
+LINE 6:             "Técnico", "Gerente", status, avaliacao_tecnica,...
+                               ^
+
+Arquivo: editar_os_page.py:696
+Função: _save_changes
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-01 12:44:57,772 - main.frontend.editar_os_page.EditarOSPage - INFO - Carregados 486 registros com sucesso
+Arquivo: editar_os_page.py:325
+Função: _on_data_loaded
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-01 12:44:58,087 - main.frontend.editar_os_page.EditarOSPage - INFO - OS 0 carregada com sucesso
+Arquivo: editar_os_page.py:459
+Função: _load_os
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-01 12:45:04,398 - main.frontend.editar_os_page.EditarOSPage - INFO - OS 404040 carregada com sucesso
+Arquivo: editar_os_page.py:459
+Função: _load_os
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-01 12:45:07,193 - main.frontend.editar_os_page.EditarOSPage - INFO - OS 404040 salva com sucesso
+Arquivo: editar_os_page.py:655
+Função: _save_to_database
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-01 12:45:13,204 - main.frontend.editar_os_page.EditarOSPage - INFO - OS 4200 carregada com sucesso
+Arquivo: editar_os_page.py:459
+Função: _load_os
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-01 12:45:15,402 - main.frontend.editar_os_page.EditarOSPage - INFO - OS 404040 carregada com sucesso
+Arquivo: editar_os_page.py:459
+Função: _load_os
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-01 12:45:31,688 - main.frontend.editar_os_page.EditarOSPage - INFO - Carregados 487 registros com sucesso
+Arquivo: editar_os_page.py:325
+Função: _on_data_loaded
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-01 12:45:32,010 - main.frontend.editar_os_page.EditarOSPage - INFO - OS 0 carregada com sucesso
+Arquivo: editar_os_page.py:459
+Função: _load_os
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-01 12:45:36,454 - main.frontend.editar_os_page.EditarOSPage - INFO - OS 404040 carregada com sucesso
+Arquivo: editar_os_page.py:459
+Função: _load_os
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-01 12:51:54,695 - main.frontend.editar_os_page.EditarOSPage - INFO - Carregados 487 registros com sucesso
+Arquivo: editar_os_page.py:325
+Função: _on_data_loaded
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-01 12:51:55,000 - main.frontend.editar_os_page.EditarOSPage - INFO - OS 0 carregada com sucesso
+Arquivo: editar_os_page.py:459
+Função: _load_os
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-01 12:52:11,608 - main.frontend.editar_os_page.EditarOSPage - INFO - OS 51616 carregada com sucesso
+Arquivo: editar_os_page.py:459
+Função: _load_os
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-01 12:52:16,689 - main.frontend.editar_os_page.EditarOSPage - INFO - OS 51616 salva com sucesso
+Arquivo: editar_os_page.py:655
+Função: _save_to_database
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-01 12:52:20,432 - main.frontend.editar_os_page.EditarOSPage - INFO - Carregados 488 registros com sucesso
+Arquivo: editar_os_page.py:325
+Função: _on_data_loaded
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-01 12:52:20,731 - main.frontend.editar_os_page.EditarOSPage - INFO - OS 0 carregada com sucesso
+Arquivo: editar_os_page.py:459
+Função: _load_os
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-01 12:52:29,691 - main.frontend.editar_os_page.EditarOSPage - INFO - OS 51616 carregada com sucesso
+Arquivo: editar_os_page.py:459
+Função: _load_os
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-01 12:52:46,170 - main.frontend.editar_os_page.EditarOSPage - INFO - OS 51616 salva com sucesso
+Arquivo: editar_os_page.py:655
+Função: _save_to_database
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-01 12:52:51,753 - main.frontend.editar_os_page.EditarOSPage - INFO - Carregados 489 registros com sucesso
+Arquivo: editar_os_page.py:325
+Função: _on_data_loaded
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-01 12:52:52,072 - main.frontend.editar_os_page.EditarOSPage - INFO - OS 0 carregada com sucesso
+Arquivo: editar_os_page.py:459
+Função: _load_os
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-01 12:52:59,720 - main.frontend.editar_os_page.EditarOSPage - INFO - OS 51616 carregada com sucesso
+Arquivo: editar_os_page.py:459
+Função: _load_os
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-01 12:53:22,031 - main.frontend.editar_os_page.EditarOSPage - INFO - OS 51616 salva com sucesso
+Arquivo: editar_os_page.py:655
+Função: _save_to_database
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-01 12:53:22,034 - main.frontend.editar_os_page.EditarOSPage - INFO - Auto-save executado para OS 51616
+Arquivo: editar_os_page.py:584
+Função: _auto_save
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-01 12:53:24,647 - main.frontend.editar_os_page.EditarOSPage - INFO - OS 51616 salva com sucesso
+Arquivo: editar_os_page.py:655
+Função: _save_to_database
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-01 12:53:27,689 - main.frontend.editar_os_page.EditarOSPage - INFO - Carregados 491 registros com sucesso
+Arquivo: editar_os_page.py:325
+Função: _on_data_loaded
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-01 12:53:28,002 - main.frontend.editar_os_page.EditarOSPage - INFO - OS 0 carregada com sucesso
+Arquivo: editar_os_page.py:459
+Função: _load_os
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-01 12:53:35,053 - main.frontend.editar_os_page.EditarOSPage - INFO - OS 51616 carregada com sucesso
+Arquivo: editar_os_page.py:459
+Função: _load_os
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-01 12:53:42,227 - main.frontend.editar_os_page.EditarOSPage - INFO - OS 51616 salva com sucesso
+Arquivo: editar_os_page.py:655
+Função: _save_to_database
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-01 12:53:42,228 - main.frontend.editar_os_page.EditarOSPage - INFO - Auto-save executado para OS 51616
+Arquivo: editar_os_page.py:584
+Função: _auto_save
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-01 12:53:42,710 - main.frontend.editar_os_page.EditarOSPage - INFO - OS 51616 salva com sucesso
+Arquivo: editar_os_page.py:655
+Função: _save_to_database
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-01 12:53:46,634 - main.frontend.editar_os_page.EditarOSPage - INFO - Carregados 493 registros com sucesso
+Arquivo: editar_os_page.py:325
+Função: _on_data_loaded
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-01 12:53:46,937 - main.frontend.editar_os_page.EditarOSPage - INFO - OS 0 carregada com sucesso
+Arquivo: editar_os_page.py:459
+Função: _load_os
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-01 12:53:58,330 - main.frontend.editar_os_page.EditarOSPage - INFO - OS 51616 carregada com sucesso
+Arquivo: editar_os_page.py:459
+Função: _load_os
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-01 12:59:49,284 - main.frontend.editar_os_page.EditarOSPage - INFO - Carregados 493 registros com sucesso
+Arquivo: editar_os_page.py:325
+Função: _on_data_loaded
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-01 12:59:49,601 - main.frontend.editar_os_page.EditarOSPage - INFO - OS 0 carregada com sucesso
+Arquivo: editar_os_page.py:459
+Função: _load_os
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-01 13:00:45,817 - main.frontend.editar_os_page.EditarOSPage - INFO - Carregados 487 registros com sucesso
+Arquivo: editar_os_page.py:325
+Função: _on_data_loaded
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-01 13:00:46,132 - main.frontend.editar_os_page.EditarOSPage - INFO - OS 0 carregada com sucesso
+Arquivo: editar_os_page.py:459
+Função: _load_os
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-01 13:00:53,500 - main.frontend.editar_os_page.EditarOSPage - INFO - OS 5100 carregada com sucesso
+Arquivo: editar_os_page.py:459
+Função: _load_os
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-01 13:01:05,162 - main.frontend.editar_os_page.EditarOSPage - INFO - OS 51616 carregada com sucesso
+Arquivo: editar_os_page.py:459
+Função: _load_os
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-01 13:01:05,891 - main.frontend.editar_os_page.EditarOSPage - INFO - OS 51616 carregada com sucesso
+Arquivo: editar_os_page.py:459
+Função: _load_os
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-01 13:01:12,763 - main.frontend.editar_os_page.EditarOSPage - ERROR - Erro em salvar OS 51616: there is no unique or exclusion constraint matching the ON CONFLICT specification
+
+Arquivo: editar_os_page.py:419
+Função: _handle_error
+Thread: MainThread
+Processo: MainProcess
+---
+Traceback (most recent call last):
+  File "c:\Users\z223301\Downloads\Software\main\frontend\editar_os_page.py", line 636, in _save_to_database
+    insert_os(
+  File "c:\Users\z223301\Downloads\Software\main\backend\storage_db.py", line 191, in insert_os
+    cur.execute(query, params)
+psycopg2.errors.InvalidColumnReference: there is no unique or exclusion constraint matching the ON CONFLICT specification
+
+2025-07-01 13:01:20,752 - main.frontend.editar_os_page.EditarOSPage - ERROR - Erro ao salvar alterações: there is no unique or exclusion constraint matching the ON CONFLICT specification
+
+Arquivo: editar_os_page.py:694
+Função: _save_changes
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-01 13:06:19,749 - main.frontend.editar_os_page.EditarOSPage - INFO - OS 51616 salva com sucesso
+Arquivo: editar_os_page.py:655
+Função: _save_to_database
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-01 13:06:30,447 - main.frontend.editar_os_page.EditarOSPage - INFO - Carregados 485 registros com sucesso
+Arquivo: editar_os_page.py:325
+Função: _on_data_loaded
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-01 13:06:30,759 - main.frontend.editar_os_page.EditarOSPage - INFO - OS 0 carregada com sucesso
+Arquivo: editar_os_page.py:459
+Função: _load_os
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-01 13:06:37,017 - main.frontend.editar_os_page.EditarOSPage - INFO - OS 51616 carregada com sucesso
+Arquivo: editar_os_page.py:459
+Função: _load_os
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-01 13:06:51,282 - main.frontend.editar_os_page.EditarOSPage - INFO - OS 51616 salva com sucesso
+Arquivo: editar_os_page.py:655
+Função: _save_to_database
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-01 13:06:55,883 - main.frontend.editar_os_page.EditarOSPage - INFO - Carregados 485 registros com sucesso
+Arquivo: editar_os_page.py:325
+Função: _on_data_loaded
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-01 13:06:56,191 - main.frontend.editar_os_page.EditarOSPage - INFO - OS 0 carregada com sucesso
+Arquivo: editar_os_page.py:459
+Função: _load_os
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-01 13:06:58,495 - main.frontend.editar_os_page.EditarOSPage - INFO - OS 5100 carregada com sucesso
+Arquivo: editar_os_page.py:459
+Função: _load_os
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-01 13:06:59,053 - main.frontend.editar_os_page.EditarOSPage - INFO - OS 51616 carregada com sucesso
+Arquivo: editar_os_page.py:459
+Função: _load_os
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-01 13:06:59,639 - main.frontend.editar_os_page.EditarOSPage - INFO - OS 51616 carregada com sucesso
+Arquivo: editar_os_page.py:459
+Função: _load_os
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-01 13:07:00,042 - main.frontend.editar_os_page.EditarOSPage - INFO - OS 51616 carregada com sucesso
+Arquivo: editar_os_page.py:459
+Função: _load_os
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-01 13:07:51,305 - main.frontend.editar_os_page.EditarOSPage - INFO - OS 51616 salva com sucesso
+Arquivo: editar_os_page.py:655
+Função: _save_to_database
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-01 13:07:51,307 - main.frontend.editar_os_page.EditarOSPage - INFO - Auto-save executado para OS 51616
+Arquivo: editar_os_page.py:584
+Função: _auto_save
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-01 13:07:55,129 - main.frontend.editar_os_page.EditarOSPage - INFO - OS 51616 salva com sucesso
+Arquivo: editar_os_page.py:655
+Função: _save_to_database
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-01 13:08:32,641 - main.frontend.editar_os_page.EditarOSPage - INFO - Carregados 485 registros com sucesso
+Arquivo: editar_os_page.py:325
+Função: _on_data_loaded
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-01 13:08:32,944 - main.frontend.editar_os_page.EditarOSPage - INFO - OS 0 carregada com sucesso
+Arquivo: editar_os_page.py:459
+Função: _load_os
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-01 13:09:03,804 - main.frontend.editar_os_page.EditarOSPage - INFO - OS 51616 carregada com sucesso
+Arquivo: editar_os_page.py:459
+Função: _load_os
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-01 13:09:04,329 - main.frontend.editar_os_page.EditarOSPage - INFO - OS 51616 carregada com sucesso
+Arquivo: editar_os_page.py:459
+Função: _load_os
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-01 13:09:09,069 - main.frontend.editar_os_page.EditarOSPage - INFO - OS 51616 salva com sucesso
+Arquivo: editar_os_page.py:655
+Função: _save_to_database
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-01 13:09:24,231 - main.frontend.editar_os_page.EditarOSPage - INFO - OS 51616 salva com sucesso
+Arquivo: editar_os_page.py:655
+Função: _save_to_database
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-01 13:10:44,928 - main.frontend.editar_os_page.EditarOSPage - INFO - OS 51616 salva com sucesso
+Arquivo: editar_os_page.py:655
+Função: _save_to_database
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-01 13:20:55,799 - main.frontend.editar_os_page.EditarOSPage - INFO - Carregados 485 registros com sucesso
+Arquivo: editar_os_page.py:325
+Função: _on_data_loaded
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-01 13:20:56,108 - main.frontend.editar_os_page.EditarOSPage - INFO - OS 0 carregada com sucesso
+Arquivo: editar_os_page.py:459
+Função: _load_os
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-01 13:21:14,199 - main.frontend.editar_os_page.EditarOSPage - INFO - OS 51616 carregada com sucesso
+Arquivo: editar_os_page.py:459
+Função: _load_os
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-01 13:21:28,866 - main.frontend.editar_os_page.EditarOSPage - INFO - OS 51616 salva com sucesso
+Arquivo: editar_os_page.py:656
+Função: _save_to_database
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-01 13:21:34,787 - main.frontend.editar_os_page.EditarOSPage - INFO - Carregados 485 registros com sucesso
+Arquivo: editar_os_page.py:325
+Função: _on_data_loaded
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-01 13:21:35,095 - main.frontend.editar_os_page.EditarOSPage - INFO - OS 0 carregada com sucesso
+Arquivo: editar_os_page.py:459
+Função: _load_os
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-01 13:21:36,742 - main.frontend.editar_os_page.EditarOSPage - INFO - OS 5100 carregada com sucesso
+Arquivo: editar_os_page.py:459
+Função: _load_os
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-01 13:21:37,316 - main.frontend.editar_os_page.EditarOSPage - INFO - OS 51616 carregada com sucesso
+Arquivo: editar_os_page.py:459
+Função: _load_os
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-01 13:21:37,701 - main.frontend.editar_os_page.EditarOSPage - INFO - OS 51616 carregada com sucesso
+Arquivo: editar_os_page.py:459
+Função: _load_os
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-01 13:28:52,726 - main.frontend.editar_os_page.EditarOSPage - INFO - Carregados 485 registros com sucesso
+Arquivo: editar_os_page.py:325
+Função: _on_data_loaded
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-01 13:28:53,042 - main.frontend.editar_os_page.EditarOSPage - INFO - OS 0 carregada com sucesso
+Arquivo: editar_os_page.py:459
+Função: _load_os
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-01 13:29:02,566 - main.frontend.editar_os_page.EditarOSPage - INFO - OS 51616 carregada com sucesso
+Arquivo: editar_os_page.py:459
+Função: _load_os
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-01 13:29:12,491 - main.frontend.editar_os_page.EditarOSPage - INFO - OS 51616 salva com sucesso
+Arquivo: editar_os_page.py:656
+Função: _save_to_database
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-01 13:29:18,409 - main.frontend.editar_os_page.EditarOSPage - INFO - Carregados 485 registros com sucesso
+Arquivo: editar_os_page.py:325
+Função: _on_data_loaded
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-01 13:29:18,718 - main.frontend.editar_os_page.EditarOSPage - INFO - OS 0 carregada com sucesso
+Arquivo: editar_os_page.py:459
+Função: _load_os
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-01 13:29:20,784 - main.frontend.editar_os_page.EditarOSPage - INFO - OS 5100 carregada com sucesso
+Arquivo: editar_os_page.py:459
+Função: _load_os
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-01 13:29:22,907 - main.frontend.editar_os_page.EditarOSPage - INFO - OS 51616 carregada com sucesso
+Arquivo: editar_os_page.py:459
+Função: _load_os
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-01 13:29:23,609 - main.frontend.editar_os_page.EditarOSPage - INFO - OS 51616 carregada com sucesso
+Arquivo: editar_os_page.py:459
+Função: _load_os
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-01 13:30:17,899 - main.frontend.editar_os_page.EditarOSPage - INFO - OS 51616 salva com sucesso
+Arquivo: editar_os_page.py:656
+Função: _save_to_database
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-01 13:30:27,878 - main.frontend.editar_os_page.EditarOSPage - INFO - Carregados 485 registros com sucesso
+Arquivo: editar_os_page.py:325
+Função: _on_data_loaded
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-01 13:30:28,181 - main.frontend.editar_os_page.EditarOSPage - INFO - OS 0 carregada com sucesso
+Arquivo: editar_os_page.py:459
+Função: _load_os
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-01 13:30:36,588 - main.frontend.editar_os_page.EditarOSPage - INFO - OS 51616 carregada com sucesso
+Arquivo: editar_os_page.py:459
+Função: _load_os
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-01 13:36:59,104 - main.frontend.editar_os_page.EditarOSPage - INFO - OS 404040 carregada com sucesso
+Arquivo: editar_os_page.py:459
+Função: _load_os
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-01 13:37:11,707 - main.frontend.editar_os_page.EditarOSPage - ERROR - Erro em salvar OS 404040: connection already closed
+Arquivo: editar_os_page.py:419
+Função: _handle_error
+Thread: MainThread
+Processo: MainProcess
+---
+Traceback (most recent call last):
+  File "c:\Users\z223301\Downloads\Software\main\backend\storage_db.py", line 42, in get_db_cursor
+    yield cur
+  File "c:\Users\z223301\Downloads\Software\main\backend\storage_db.py", line 195, in insert_os
+    cur.execute(query, params)
+psycopg2.OperationalError: SSL connection has been closed unexpectedly
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "c:\Users\z223301\Downloads\Software\main\frontend\editar_os_page.py", line 636, in _save_to_database
+    insert_os(
+  File "c:\Users\z223301\Downloads\Software\main\backend\storage_db.py", line 194, in insert_os
+    with get_db_cursor() as cur:
+  File "C:\Users\z223301\AppData\Local\Programs\Python\Python311\Lib\contextlib.py", line 158, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "c:\Users\z223301\Downloads\Software\main\backend\storage_db.py", line 45, in get_db_cursor
+    conn.rollback()
+psycopg2.InterfaceError: connection already closed
+2025-07-01 13:37:13,492 - main.frontend.editar_os_page.EditarOSPage - ERROR - Erro no auto-save: connection already closed
+Arquivo: editar_os_page.py:586
+Função: _auto_save
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-01 13:37:21,395 - main.frontend.editar_os_page.EditarOSPage - ERROR - Erro em salvar OS 404040: connection already closed
+Arquivo: editar_os_page.py:419
+Função: _handle_error
+Thread: MainThread
+Processo: MainProcess
+---
+Traceback (most recent call last):
+  File "c:\Users\z223301\Downloads\Software\main\backend\storage_db.py", line 42, in get_db_cursor
+    yield cur
+  File "c:\Users\z223301\Downloads\Software\main\backend\storage_db.py", line 195, in insert_os
+    cur.execute(query, params)
+psycopg2.OperationalError: SSL connection has been closed unexpectedly
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "c:\Users\z223301\Downloads\Software\main\frontend\editar_os_page.py", line 636, in _save_to_database
+    insert_os(
+  File "c:\Users\z223301\Downloads\Software\main\backend\storage_db.py", line 194, in insert_os
+    with get_db_cursor() as cur:
+  File "C:\Users\z223301\AppData\Local\Programs\Python\Python311\Lib\contextlib.py", line 158, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "c:\Users\z223301\Downloads\Software\main\backend\storage_db.py", line 45, in get_db_cursor
+    conn.rollback()
+psycopg2.InterfaceError: connection already closed
+2025-07-01 13:37:22,653 - main.frontend.editar_os_page.EditarOSPage - ERROR - Erro no auto-save: connection already closed
+Arquivo: editar_os_page.py:586
+Função: _auto_save
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-01 13:37:27,288 - main.frontend.editar_os_page.EditarOSPage - ERROR - Erro em salvar OS 404040: connection already closed
+Arquivo: editar_os_page.py:419
+Função: _handle_error
+Thread: MainThread
+Processo: MainProcess
+---
+Traceback (most recent call last):
+  File "c:\Users\z223301\Downloads\Software\main\backend\storage_db.py", line 42, in get_db_cursor
+    yield cur
+  File "c:\Users\z223301\Downloads\Software\main\backend\storage_db.py", line 195, in insert_os
+    cur.execute(query, params)
+psycopg2.OperationalError: SSL connection has been closed unexpectedly
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "c:\Users\z223301\Downloads\Software\main\frontend\editar_os_page.py", line 636, in _save_to_database
+    insert_os(
+  File "c:\Users\z223301\Downloads\Software\main\backend\storage_db.py", line 194, in insert_os
+    with get_db_cursor() as cur:
+  File "C:\Users\z223301\AppData\Local\Programs\Python\Python311\Lib\contextlib.py", line 158, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "c:\Users\z223301\Downloads\Software\main\backend\storage_db.py", line 45, in get_db_cursor
+    conn.rollback()
+psycopg2.InterfaceError: connection already closed
+2025-07-01 13:37:32,309 - main.frontend.editar_os_page.EditarOSPage - ERROR - Erro ao salvar alterações: connection already closed
+Arquivo: editar_os_page.py:695
+Função: _save_changes
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-01 13:37:55,403 - main.frontend.editar_os_page.EditarOSPage - INFO - Carregados 485 registros com sucesso
+Arquivo: editar_os_page.py:325
+Função: _on_data_loaded
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-01 13:37:55,705 - main.frontend.editar_os_page.EditarOSPage - INFO - OS 0 carregada com sucesso
+Arquivo: editar_os_page.py:459
+Função: _load_os
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-01 13:38:04,941 - main.frontend.editar_os_page.EditarOSPage - INFO - OS 404040 carregada com sucesso
+Arquivo: editar_os_page.py:459
+Função: _load_os
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-01 13:38:14,186 - main.frontend.editar_os_page.EditarOSPage - INFO - OS 404040 salva com sucesso
+Arquivo: editar_os_page.py:656
+Função: _save_to_database
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-01 13:38:41,342 - main.frontend.editar_os_page.EditarOSPage - INFO - OS 404040 salva com sucesso
+Arquivo: editar_os_page.py:656
+Função: _save_to_database
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-01 13:39:20,223 - main.frontend.editar_os_page.EditarOSPage - INFO - OS 404040 salva com sucesso
+Arquivo: editar_os_page.py:656
+Função: _save_to_database
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-01 13:40:01,014 - main.frontend.editar_os_page.EditarOSPage - INFO - OS 404040 salva com sucesso
+Arquivo: editar_os_page.py:656
+Função: _save_to_database
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-02 06:25:29,376 - main.frontend.editar_os_page.EditarOSPage - ERROR - Erro em salvar OS 404040: connection already closed
+Arquivo: editar_os_page.py:419
+Função: _handle_error
+Thread: MainThread
+Processo: MainProcess
+---
+Traceback (most recent call last):
+  File "c:\Users\z223301\Downloads\Software\main\backend\storage_db.py", line 42, in get_db_cursor
+    yield cur
+  File "c:\Users\z223301\Downloads\Software\main\backend\storage_db.py", line 195, in insert_os
+    cur.execute(query, params)
+psycopg2.OperationalError: could not receive data from server: Software caused connection abort (0x00002745/10053)
+SSL SYSCALL error: Software caused connection abort (0x00002745/10053)
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "c:\Users\z223301\Downloads\Software\main\frontend\editar_os_page.py", line 636, in _save_to_database
+    insert_os(
+  File "c:\Users\z223301\Downloads\Software\main\backend\storage_db.py", line 194, in insert_os
+    with get_db_cursor() as cur:
+  File "C:\Users\z223301\AppData\Local\Programs\Python\Python311\Lib\contextlib.py", line 158, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "c:\Users\z223301\Downloads\Software\main\backend\storage_db.py", line 45, in get_db_cursor
+    conn.rollback()
+psycopg2.InterfaceError: connection already closed
+2025-07-02 06:25:30,550 - main.frontend.editar_os_page.EditarOSPage - ERROR - Erro ao salvar alterações: connection already closed
+Arquivo: editar_os_page.py:695
+Função: _save_changes
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-02 06:41:35,050 - main.frontend.editar_os_page.EditarOSPage - INFO - Carregados 485 registros com sucesso
+Arquivo: editar_os_page.py:325
+Função: _on_data_loaded
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-02 06:41:35,370 - main.frontend.editar_os_page.EditarOSPage - INFO - OS 0 carregada com sucesso
+Arquivo: editar_os_page.py:459
+Função: _load_os
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-02 06:48:17,480 - main.frontend.editar_os_page.EditarOSPage - INFO - OS 404040 carregada com sucesso
+Arquivo: editar_os_page.py:459
+Função: _load_os
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-02 06:48:22,721 - main.frontend.editar_os_page.EditarOSPage - INFO - OS 4200 carregada com sucesso
+Arquivo: editar_os_page.py:459
+Função: _load_os
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-02 06:53:33,969 - main.frontend.editar_os_page.EditarOSPage - INFO - OS 404040 carregada com sucesso
+Arquivo: editar_os_page.py:459
+Função: _load_os
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-02 06:53:39,672 - main.frontend.editar_os_page.EditarOSPage - ERROR - Erro em salvar OS 404040: connection already closed
+Arquivo: editar_os_page.py:419
+Função: _handle_error
+Thread: MainThread
+Processo: MainProcess
+---
+Traceback (most recent call last):
+  File "c:\Users\z223301\Downloads\Software\main\backend\storage_db.py", line 42, in get_db_cursor
+    yield cur
+  File "c:\Users\z223301\Downloads\Software\main\backend\storage_db.py", line 195, in insert_os
+    cur.execute(query, params)
+psycopg2.OperationalError: SSL connection has been closed unexpectedly
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "c:\Users\z223301\Downloads\Software\main\frontend\editar_os_page.py", line 636, in _save_to_database
+    insert_os(
+  File "c:\Users\z223301\Downloads\Software\main\backend\storage_db.py", line 194, in insert_os
+    with get_db_cursor() as cur:
+  File "C:\Users\z223301\AppData\Local\Programs\Python\Python311\Lib\contextlib.py", line 158, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "c:\Users\z223301\Downloads\Software\main\backend\storage_db.py", line 45, in get_db_cursor
+    conn.rollback()
+psycopg2.InterfaceError: connection already closed
+2025-07-02 06:53:40,653 - main.frontend.editar_os_page.EditarOSPage - ERROR - Erro ao salvar alterações: connection already closed
+Arquivo: editar_os_page.py:695
+Função: _save_changes
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-02 06:53:57,204 - main.frontend.editar_os_page.EditarOSPage - INFO - Carregados 485 registros com sucesso
+Arquivo: editar_os_page.py:325
+Função: _on_data_loaded
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-02 06:53:57,514 - main.frontend.editar_os_page.EditarOSPage - INFO - OS 0 carregada com sucesso
+Arquivo: editar_os_page.py:459
+Função: _load_os
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-02 06:54:01,956 - main.frontend.editar_os_page.EditarOSPage - ERROR - Erro em salvar OS 0: Erros de validação encontrados:
+data_pag1: Data inválida. Use formato YYYY-MM-DD ou DD/MM/YYYY
+data_pag2: Data inválida. Use formato YYYY-MM-DD ou DD/MM/YYYY
+data_pag3: Data inválida. Use formato YYYY-MM-DD ou DD/MM/YYYY
+valor: Valor inválido
+vezes: Número de parcelas inválido
+Arquivo: editar_os_page.py:419
+Função: _handle_error
+Thread: MainThread
+Processo: MainProcess
+---
+Traceback (most recent call last):
+  File "c:\Users\z223301\Downloads\Software\main\frontend\editar_os_page.py", line 599, in _save_to_database
+    raise ValueError(
+ValueError: Erros de validação encontrados:
+data_pag1: Data inválida. Use formato YYYY-MM-DD ou DD/MM/YYYY
+data_pag2: Data inválida. Use formato YYYY-MM-DD ou DD/MM/YYYY
+data_pag3: Data inválida. Use formato YYYY-MM-DD ou DD/MM/YYYY
+valor: Valor inválido
+vezes: Número de parcelas inválido
+2025-07-02 06:54:04,072 - main.frontend.editar_os_page.EditarOSPage - ERROR - Erro ao salvar alterações: Erros de validação encontrados:
+data_pag1: Data inválida. Use formato YYYY-MM-DD ou DD/MM/YYYY
+data_pag2: Data inválida. Use formato YYYY-MM-DD ou DD/MM/YYYY
+data_pag3: Data inválida. Use formato YYYY-MM-DD ou DD/MM/YYYY
+valor: Valor inválido
+vezes: Número de parcelas inválido
+Arquivo: editar_os_page.py:695
+Função: _save_changes
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-02 06:54:10,196 - main.frontend.editar_os_page.EditarOSPage - INFO - OS 404040 carregada com sucesso
+Arquivo: editar_os_page.py:459
+Função: _load_os
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-02 06:54:14,698 - main.frontend.editar_os_page.EditarOSPage - INFO - OS 404040 salva com sucesso
+Arquivo: editar_os_page.py:656
+Função: _save_to_database
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-02 06:54:20,891 - main.frontend.editar_os_page.EditarOSPage - INFO - Carregados 485 registros com sucesso
+Arquivo: editar_os_page.py:325
+Função: _on_data_loaded
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-02 06:54:21,204 - main.frontend.editar_os_page.EditarOSPage - INFO - OS 0 carregada com sucesso
+Arquivo: editar_os_page.py:459
+Função: _load_os
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-02 06:54:25,166 - main.frontend.editar_os_page.EditarOSPage - INFO - OS 404040 carregada com sucesso
+Arquivo: editar_os_page.py:459
+Função: _load_os
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-02 06:54:32,436 - main.frontend.editar_os_page.EditarOSPage - INFO - OS 51616 carregada com sucesso
+Arquivo: editar_os_page.py:459
+Função: _load_os
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-02 06:56:35,729 - main.frontend.editar_os_page.EditarOSPage - INFO - OS 404040 carregada com sucesso
+Arquivo: editar_os_page.py:459
+Função: _load_os
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-02 06:56:36,252 - main.frontend.editar_os_page.EditarOSPage - INFO - OS 404040 carregada com sucesso
+Arquivo: editar_os_page.py:459
+Função: _load_os
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-02 06:56:55,238 - main.frontend.editar_os_page.EditarOSPage - INFO - OS 5100 carregada com sucesso
+Arquivo: editar_os_page.py:459
+Função: _load_os
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-02 06:56:55,854 - main.frontend.editar_os_page.EditarOSPage - INFO - OS 51616 carregada com sucesso
+Arquivo: editar_os_page.py:459
+Função: _load_os
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-02 06:56:56,276 - main.frontend.editar_os_page.EditarOSPage - INFO - OS 51616 carregada com sucesso
+Arquivo: editar_os_page.py:459
+Função: _load_os
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-02 06:58:13,276 - main.frontend.editar_os_page.EditarOSPage - INFO - Carregados 485 registros com sucesso
+Arquivo: editar_os_page.py:325
+Função: _on_data_loaded
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-02 06:58:13,577 - main.frontend.editar_os_page.EditarOSPage - INFO - OS 0 carregada com sucesso
+Arquivo: editar_os_page.py:459
+Função: _load_os
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-02 07:28:14,660 - main.frontend.editar_os_page.EditarOSPage - INFO - Carregados 485 registros com sucesso
+Arquivo: editar_os_page.py:325
+Função: _on_data_loaded
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-02 07:28:14,967 - main.frontend.editar_os_page.EditarOSPage - INFO - OS 0 carregada com sucesso
+Arquivo: editar_os_page.py:459
+Função: _load_os
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-02 07:42:44,986 - main.frontend.editar_os_page.EditarOSPage - INFO - OS 404040 carregada com sucesso
+Arquivo: editar_os_page.py:459
+Função: _load_os
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-02 07:42:54,469 - main.frontend.editar_os_page.EditarOSPage - ERROR - Erro em salvar OS 404040: connection already closed
+Arquivo: editar_os_page.py:419
+Função: _handle_error
+Thread: MainThread
+Processo: MainProcess
+---
+Traceback (most recent call last):
+  File "c:\Users\z223301\Downloads\Software\main\backend\storage_db.py", line 42, in get_db_cursor
+    yield cur
+  File "c:\Users\z223301\Downloads\Software\main\backend\storage_db.py", line 195, in insert_os
+    cur.execute(query, params)
+psycopg2.OperationalError: SSL connection has been closed unexpectedly
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "c:\Users\z223301\Downloads\Software\main\frontend\editar_os_page.py", line 636, in _save_to_database
+    insert_os(
+  File "c:\Users\z223301\Downloads\Software\main\backend\storage_db.py", line 194, in insert_os
+    with get_db_cursor() as cur:
+  File "C:\Users\z223301\AppData\Local\Programs\Python\Python311\Lib\contextlib.py", line 158, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "c:\Users\z223301\Downloads\Software\main\backend\storage_db.py", line 45, in get_db_cursor
+    conn.rollback()
+psycopg2.InterfaceError: connection already closed
+2025-07-02 07:42:57,140 - main.frontend.editar_os_page.EditarOSPage - ERROR - Erro no auto-save: connection already closed
+Arquivo: editar_os_page.py:586
+Função: _auto_save
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-02 07:43:02,170 - main.frontend.editar_os_page.EditarOSPage - ERROR - Erro em salvar OS 404040: connection already closed
+Arquivo: editar_os_page.py:419
+Função: _handle_error
+Thread: MainThread
+Processo: MainProcess
+---
+Traceback (most recent call last):
+  File "c:\Users\z223301\Downloads\Software\main\backend\storage_db.py", line 42, in get_db_cursor
+    yield cur
+  File "c:\Users\z223301\Downloads\Software\main\backend\storage_db.py", line 195, in insert_os
+    cur.execute(query, params)
+psycopg2.OperationalError: SSL connection has been closed unexpectedly
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "c:\Users\z223301\Downloads\Software\main\frontend\editar_os_page.py", line 636, in _save_to_database
+    insert_os(
+  File "c:\Users\z223301\Downloads\Software\main\backend\storage_db.py", line 194, in insert_os
+    with get_db_cursor() as cur:
+  File "C:\Users\z223301\AppData\Local\Programs\Python\Python311\Lib\contextlib.py", line 158, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "c:\Users\z223301\Downloads\Software\main\backend\storage_db.py", line 45, in get_db_cursor
+    conn.rollback()
+psycopg2.InterfaceError: connection already closed
+2025-07-02 07:43:18,263 - main.frontend.editar_os_page.EditarOSPage - ERROR - Erro ao salvar alterações: connection already closed
+Arquivo: editar_os_page.py:695
+Função: _save_changes
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-02 07:43:32,272 - main.frontend.editar_os_page.EditarOSPage - INFO - Carregados 485 registros com sucesso
+Arquivo: editar_os_page.py:325
+Função: _on_data_loaded
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-02 07:43:32,583 - main.frontend.editar_os_page.EditarOSPage - INFO - OS 0 carregada com sucesso
+Arquivo: editar_os_page.py:459
+Função: _load_os
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-02 07:43:45,810 - main.frontend.editar_os_page.EditarOSPage - INFO - OS 404040 carregada com sucesso
+Arquivo: editar_os_page.py:459
+Função: _load_os
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-02 07:43:54,300 - main.frontend.editar_os_page.EditarOSPage - INFO - OS 404040 salva com sucesso
+Arquivo: editar_os_page.py:656
+Função: _save_to_database
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-02 07:43:54,301 - main.frontend.editar_os_page.EditarOSPage - INFO - Auto-save executado para OS 404040
+Arquivo: editar_os_page.py:584
+Função: _auto_save
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-02 07:43:55,541 - main.frontend.editar_os_page.EditarOSPage - INFO - OS 404040 salva com sucesso
+Arquivo: editar_os_page.py:656
+Função: _save_to_database
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-02 07:44:00,862 - main.frontend.editar_os_page.EditarOSPage - INFO - Carregados 485 registros com sucesso
+Arquivo: editar_os_page.py:325
+Função: _on_data_loaded
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-02 07:44:01,161 - main.frontend.editar_os_page.EditarOSPage - INFO - OS 0 carregada com sucesso
+Arquivo: editar_os_page.py:459
+Função: _load_os
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-02 07:44:03,174 - main.frontend.editar_os_page.EditarOSPage - INFO - OS 404040 carregada com sucesso
+Arquivo: editar_os_page.py:459
+Função: _load_os
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-02 07:57:11,691 - main.frontend.editar_os_page.EditarOSPage - INFO - Carregados 485 registros com sucesso
+Arquivo: editar_os_page.py:325
+Função: _on_data_loaded
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-02 07:57:11,992 - main.frontend.editar_os_page.EditarOSPage - INFO - OS 0 carregada com sucesso
+Arquivo: editar_os_page.py:459
+Função: _load_os
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-02 08:06:22,123 - main.frontend.editar_os_page.EditarOSPage - INFO - Carregados 485 registros com sucesso
+Arquivo: editar_os_page.py:325
+Função: _on_data_loaded
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-02 08:06:22,438 - main.frontend.editar_os_page.EditarOSPage - INFO - OS 0 carregada com sucesso
+Arquivo: editar_os_page.py:459
+Função: _load_os
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-02 08:07:17,388 - main.frontend.editar_os_page.EditarOSPage - INFO - Carregados 485 registros com sucesso
+Arquivo: editar_os_page.py:325
+Função: _on_data_loaded
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-02 08:07:17,696 - main.frontend.editar_os_page.EditarOSPage - INFO - OS 0 carregada com sucesso
+Arquivo: editar_os_page.py:459
+Função: _load_os
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-02 08:38:25,602 - main.frontend.editar_os_page.EditarOSPage - INFO - Carregados 485 registros com sucesso
+Arquivo: editar_os_page.py:325
+Função: _on_data_loaded
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-02 08:38:25,908 - main.frontend.editar_os_page.EditarOSPage - INFO - OS 0 carregada com sucesso
+Arquivo: editar_os_page.py:459
+Função: _load_os
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-02 08:53:13,835 - main.frontend.editar_os_page.EditarOSPage - INFO - Carregados 485 registros com sucesso
+Arquivo: editar_os_page.py:325
+Função: _on_data_loaded
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-02 08:53:14,141 - main.frontend.editar_os_page.EditarOSPage - INFO - OS 0 carregada com sucesso
+Arquivo: editar_os_page.py:459
+Função: _load_os
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-02 08:53:33,959 - main.frontend.editar_os_page.EditarOSPage - INFO - Carregados 485 registros com sucesso
+Arquivo: editar_os_page.py:325
+Função: _on_data_loaded
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-02 08:53:34,271 - main.frontend.editar_os_page.EditarOSPage - INFO - OS 0 carregada com sucesso
+Arquivo: editar_os_page.py:459
+Função: _load_os
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-02 08:57:05,716 - main.frontend.editar_os_page.EditarOSPage - INFO - Carregados 485 registros com sucesso
+Arquivo: editar_os_page.py:325
+Função: _on_data_loaded
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-02 08:57:06,027 - main.frontend.editar_os_page.EditarOSPage - INFO - OS 0 carregada com sucesso
+Arquivo: editar_os_page.py:459
+Função: _load_os
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-02 09:04:01,143 - main.frontend.editar_os_page.EditarOSPage - INFO - Carregados 485 registros com sucesso
+Arquivo: editar_os_page.py:325
+Função: _on_data_loaded
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-02 09:04:01,449 - main.frontend.editar_os_page.EditarOSPage - INFO - OS 0 carregada com sucesso
+Arquivo: editar_os_page.py:459
+Função: _load_os
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-02 09:14:11,804 - main.frontend.editar_os_page.EditarOSPage - INFO - Carregados 485 registros com sucesso
+Arquivo: editar_os_page.py:325
+Função: _on_data_loaded
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-02 09:14:12,117 - main.frontend.editar_os_page.EditarOSPage - INFO - OS 0 carregada com sucesso
+Arquivo: editar_os_page.py:459
+Função: _load_os
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-02 09:18:28,926 - main.frontend.editar_os_page.EditarOSPage - INFO - Carregados 485 registros com sucesso
+Arquivo: editar_os_page.py:325
+Função: _on_data_loaded
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-02 09:18:29,231 - main.frontend.editar_os_page.EditarOSPage - INFO - OS 0 carregada com sucesso
+Arquivo: editar_os_page.py:459
+Função: _load_os
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-02 09:21:28,278 - main.frontend.editar_os_page.EditarOSPage - INFO - Carregados 485 registros com sucesso
+Arquivo: editar_os_page.py:325
+Função: _on_data_loaded
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-02 09:21:28,597 - main.frontend.editar_os_page.EditarOSPage - INFO - OS 0 carregada com sucesso
+Arquivo: editar_os_page.py:459
+Função: _load_os
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-02 09:24:15,698 - main.frontend.editar_os_page.EditarOSPage - INFO - Carregados 485 registros com sucesso
+Arquivo: editar_os_page.py:325
+Função: _on_data_loaded
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-02 09:24:16,001 - main.frontend.editar_os_page.EditarOSPage - INFO - OS 0 carregada com sucesso
+Arquivo: editar_os_page.py:459
+Função: _load_os
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-02 09:27:01,853 - main.frontend.editar_os_page.EditarOSPage - INFO - Carregados 485 registros com sucesso
+Arquivo: editar_os_page.py:325
+Função: _on_data_loaded
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-02 09:27:02,158 - main.frontend.editar_os_page.EditarOSPage - INFO - OS 0 carregada com sucesso
+Arquivo: editar_os_page.py:459
+Função: _load_os
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-02 09:28:41,964 - main.frontend.editar_os_page.EditarOSPage - INFO - Carregados 485 registros com sucesso
+Arquivo: editar_os_page.py:325
+Função: _on_data_loaded
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-02 09:28:42,279 - main.frontend.editar_os_page.EditarOSPage - INFO - OS 0 carregada com sucesso
+Arquivo: editar_os_page.py:459
+Função: _load_os
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-02 09:32:20,926 - main.frontend.editar_os_page.EditarOSPage - INFO - Carregados 485 registros com sucesso
+Arquivo: editar_os_page.py:325
+Função: _on_data_loaded
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-02 09:32:21,243 - main.frontend.editar_os_page.EditarOSPage - INFO - OS 0 carregada com sucesso
+Arquivo: editar_os_page.py:459
+Função: _load_os
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-02 09:36:58,496 - main.frontend.editar_os_page.EditarOSPage - INFO - Carregados 485 registros com sucesso
+Arquivo: editar_os_page.py:325
+Função: _on_data_loaded
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-02 09:36:58,811 - main.frontend.editar_os_page.EditarOSPage - INFO - OS 0 carregada com sucesso
+Arquivo: editar_os_page.py:459
+Função: _load_os
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-02 09:40:19,209 - main.frontend.editar_os_page.EditarOSPage - INFO - Carregados 485 registros com sucesso
+Arquivo: editar_os_page.py:325
+Função: _on_data_loaded
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-02 09:40:19,517 - main.frontend.editar_os_page.EditarOSPage - INFO - OS 0 carregada com sucesso
+Arquivo: editar_os_page.py:459
+Função: _load_os
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-02 09:50:17,046 - main.frontend.editar_os_page.EditarOSPage - INFO - Carregados 485 registros com sucesso
+Arquivo: editar_os_page.py:325
+Função: _on_data_loaded
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-02 09:50:17,366 - main.frontend.editar_os_page.EditarOSPage - INFO - OS 0 carregada com sucesso
+Arquivo: editar_os_page.py:459
+Função: _load_os
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-02 09:52:40,330 - main.frontend.editar_os_page.EditarOSPage - INFO - Carregados 485 registros com sucesso
+Arquivo: editar_os_page.py:325
+Função: _on_data_loaded
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-02 09:52:40,642 - main.frontend.editar_os_page.EditarOSPage - INFO - OS 0 carregada com sucesso
+Arquivo: editar_os_page.py:459
+Função: _load_os
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-02 09:55:14,506 - main.frontend.editar_os_page.EditarOSPage - INFO - Carregados 485 registros com sucesso
+Arquivo: editar_os_page.py:325
+Função: _on_data_loaded
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-02 09:55:14,822 - main.frontend.editar_os_page.EditarOSPage - INFO - OS 0 carregada com sucesso
+Arquivo: editar_os_page.py:459
+Função: _load_os
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-02 09:58:09,409 - main.frontend.editar_os_page.EditarOSPage - INFO - Carregados 485 registros com sucesso
+Arquivo: editar_os_page.py:325
+Função: _on_data_loaded
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-02 09:58:10,233 - main.frontend.editar_os_page.EditarOSPage - INFO - OS 0 carregada com sucesso
+Arquivo: editar_os_page.py:459
+Função: _load_os
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-02 10:00:03,531 - main.frontend.editar_os_page.EditarOSPage - INFO - Carregados 485 registros com sucesso
+Arquivo: editar_os_page.py:325
+Função: _on_data_loaded
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-02 10:00:03,836 - main.frontend.editar_os_page.EditarOSPage - INFO - OS 0 carregada com sucesso
+Arquivo: editar_os_page.py:459
+Função: _load_os
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-02 10:02:13,532 - main.frontend.editar_os_page.EditarOSPage - INFO - Carregados 485 registros com sucesso
+Arquivo: editar_os_page.py:325
+Função: _on_data_loaded
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-02 10:02:13,834 - main.frontend.editar_os_page.EditarOSPage - INFO - OS 0 carregada com sucesso
+Arquivo: editar_os_page.py:459
+Função: _load_os
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-02 10:15:17,848 - main.frontend.editar_os_page.EditarOSPage - INFO - Carregados 485 registros com sucesso
+Arquivo: editar_os_page.py:325
+Função: _on_data_loaded
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-02 10:15:18,215 - main.frontend.editar_os_page.EditarOSPage - INFO - OS 0 carregada com sucesso
+Arquivo: editar_os_page.py:459
+Função: _load_os
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-02 10:23:52,186 - main.frontend.editar_os_page.EditarOSPage - INFO - Carregados 482 registros com sucesso
+Arquivo: editar_os_page.py:325
+Função: _on_data_loaded
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-02 10:23:52,507 - main.frontend.editar_os_page.EditarOSPage - INFO - OS 0 carregada com sucesso
+Arquivo: editar_os_page.py:459
+Função: _load_os
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-02 11:00:14,372 - main.frontend.editar_os_page.EditarOSPage - INFO - Carregados 482 registros com sucesso
+Arquivo: editar_os_page.py:328
+Função: _on_data_loaded
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-02 11:00:14,692 - main.frontend.editar_os_page.EditarOSPage - INFO - OS 0 carregada com sucesso
+Arquivo: editar_os_page.py:462
+Função: _load_os
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-02 12:18:05,040 - main.frontend.editar_os_page.EditarOSPage - INFO - Carregados 482 registros com sucesso
+Arquivo: editar_os_page.py:328
+Função: _on_data_loaded
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-02 12:18:05,354 - main.frontend.editar_os_page.EditarOSPage - INFO - OS 0 carregada com sucesso
+Arquivo: editar_os_page.py:462
+Função: _load_os
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-02 12:51:25,414 - main.frontend.editar_os_page.EditarOSPage - INFO - Carregados 481 registros com sucesso
+Arquivo: editar_os_page.py:328
+Função: _on_data_loaded
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-02 12:51:25,733 - main.frontend.editar_os_page.EditarOSPage - INFO - OS 0 carregada com sucesso
+Arquivo: editar_os_page.py:462
+Função: _load_os
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-02 12:55:35,534 - main.frontend.editar_os_page.EditarOSPage - INFO - Carregados 481 registros com sucesso
+Arquivo: editar_os_page.py:328
+Função: _on_data_loaded
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-02 12:55:35,848 - main.frontend.editar_os_page.EditarOSPage - INFO - OS 0 carregada com sucesso
+Arquivo: editar_os_page.py:462
+Função: _load_os
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-02 13:00:04,779 - main.frontend.editar_os_page.EditarOSPage - INFO - Carregados 481 registros com sucesso
+Arquivo: editar_os_page.py:328
+Função: _on_data_loaded
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-02 13:00:05,092 - main.frontend.editar_os_page.EditarOSPage - INFO - OS 0 carregada com sucesso
+Arquivo: editar_os_page.py:462
+Função: _load_os
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-02 13:04:31,176 - main.frontend.editar_os_page.EditarOSPage - INFO - Carregados 481 registros com sucesso
+Arquivo: editar_os_page.py:328
+Função: _on_data_loaded
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-02 13:04:31,496 - main.frontend.editar_os_page.EditarOSPage - INFO - OS 0 carregada com sucesso
+Arquivo: editar_os_page.py:462
+Função: _load_os
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-02 13:12:04,283 - main.frontend.editar_os_page.EditarOSPage - INFO - Carregados 481 registros com sucesso
+Arquivo: editar_os_page.py:328
+Função: _on_data_loaded
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-02 13:12:04,597 - main.frontend.editar_os_page.EditarOSPage - INFO - OS 0 carregada com sucesso
+Arquivo: editar_os_page.py:462
+Função: _load_os
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-02 13:17:02,899 - main.frontend.editar_os_page.EditarOSPage - INFO - Carregados 481 registros com sucesso
+Arquivo: editar_os_page.py:328
+Função: _on_data_loaded
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-02 13:17:03,215 - main.frontend.editar_os_page.EditarOSPage - INFO - OS 0 carregada com sucesso
+Arquivo: editar_os_page.py:462
+Função: _load_os
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-02 13:30:29,310 - main.frontend.editar_os_page.EditarOSPage - INFO - Carregados 481 registros com sucesso
+Arquivo: editar_os_page.py:328
+Função: _on_data_loaded
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-02 13:30:29,626 - main.frontend.editar_os_page.EditarOSPage - INFO - OS 0 carregada com sucesso
+Arquivo: editar_os_page.py:462
+Função: _load_os
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-02 14:09:55,656 - main.frontend.editar_os_page.EditarOSPage - INFO - Carregados 482 registros com sucesso
+Arquivo: editar_os_page.py:328
+Função: _on_data_loaded
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-02 14:09:55,965 - main.frontend.editar_os_page.EditarOSPage - INFO - OS 0 carregada com sucesso
+Arquivo: editar_os_page.py:462
+Função: _load_os
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-02 14:22:44,871 - main.frontend.editar_os_page.EditarOSPage - INFO - Carregados 482 registros com sucesso
+Arquivo: editar_os_page.py:328
+Função: _on_data_loaded
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-02 14:22:45,175 - main.frontend.editar_os_page.EditarOSPage - INFO - OS 0 carregada com sucesso
+Arquivo: editar_os_page.py:462
+Função: _load_os
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-02 14:30:34,744 - main.frontend.editar_os_page.EditarOSPage - INFO - Carregados 482 registros com sucesso
+Arquivo: editar_os_page.py:328
+Função: _on_data_loaded
+Thread: MainThread
+Processo: MainProcess
+---
+2025-07-02 14:30:35,067 - main.frontend.editar_os_page.EditarOSPage - INFO - OS 0 carregada com sucesso
+Arquivo: editar_os_page.py:462
+Função: _load_os
+Thread: MainThread
+Processo: MainProcess
+---

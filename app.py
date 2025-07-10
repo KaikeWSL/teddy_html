@@ -323,10 +323,12 @@ def os_todos():
         colnames = [desc[0] for desc in cur.description]
         rows = cur.fetchall()
         cur.close()
-        
+        logger.info(f"Colunas encontradas: {colnames}")
+        logger.info(f"Número de registros: {len(rows)}")
         resultado = [dict(zip(colnames, r)) for r in rows]
         return jsonify(resultado)
     except Exception as e:
+        logger.error(f"Erro em os_todos: {str(e)}")
         if conn:
             close_db_conn(conn)
         return jsonify({'erro': f'Erro ao buscar OS: {str(e)}'}), 500

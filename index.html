@@ -3,435 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Sistema OS Web</title>
-    <style>
-        body {
-            min-height: 100vh;
-            margin: 0;
-            font-family: Arial, 'Segoe UI', sans-serif;
-            background: linear-gradient(180deg, #1b4d7a 0%, #010719 100%);
-            color: #f8f9fa;
-        }
-        .container {
-            max-width: 1200px;
-            margin: 40px auto;
-            background: rgba(10, 30, 60, 0.98);
-            padding: 32px 32px 24px 32px;
-            border-radius: 18px;
-            box-shadow: 0 4px 32px #0a2d45cc;
-        }
-        h1, h2 {
-            color: #cde9fc;
-            letter-spacing: 1px;
-        }
-        .hidden { display: none !important; }
-        label { font-weight: bold; color: #cde9fc; }
-        input, select, textarea {
-            background: #cde9fc;
-            color: #0a2d45;
-            border: 1.5px solid #6fb8f5;
-            border-radius: 6px;
-            font-size: 15px;
-            font-weight: bold;
-            padding: 8px 10px;
-            margin-top: 4px;
-            margin-bottom: 8px;
-            outline: none;
-            transition: border 0.2s;
-        }
-        input:focus, select:focus, textarea:focus {
-            border: 2px solid #548dd4;
-            background: #f0faff;
-        }
-        button {
-            background: linear-gradient(90deg, #007acc 60%, #548dd4 100%);
-            color: #fff;
-            border: none;
-            border-radius: 8px;
-            font-size: 16px;
-            font-weight: bold;
-            padding: 10px 28px;
-            margin-top: 10px;
-            cursor: pointer;
-            box-shadow: 0 2px 8px #00395f33;
-            transition: background 0.2s, box-shadow 0.2s;
-        }
-        button:hover {
-            background: linear-gradient(90deg, #0056b3 60%, #548dd4 100%);
-            box-shadow: 0 4px 16px #00395f55;
-        }
-        .logout-btn {
-            float: right;
-            background: #dc3545;
-            color: #fff;
-            border-radius: 8px;
-            font-size: 15px;
-            padding: 8px 20px;
-            margin-top: 0;
-        }
-        .logout-btn:hover { background: #a71d2a; }
-        .abas {
-            display: none !important;
-        }
-        .aba-btn {
-            padding: 12px 32px;
-            border: none;
-            background: #375a7f;
-            color: #f8f9fa;
-            cursor: pointer;
-            border-radius: 12px 12px 0 0;
-            font-weight: bold;
-            font-size: 16px;
-            margin-right: 2px;
-            transition: background 0.2s, color 0.2s;
-        }
-        .aba-btn.aba-ativa {
-            background: linear-gradient(90deg, #007acc 60%, #548dd4 100%);
-            color: #fff;
-            box-shadow: 0 2px 8px #00395f33;
-        }
-        .filtros {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 14px;
-            margin-bottom: 20px;
-        }
-        .filtros > div { flex: 1 1 180px; }
-        .contagem {
-            margin-bottom: 10px;
-            font-weight: bold;
-            color: #a3d4f7;
-        }
-        .tabela-container {
-            width: 100%;
-            overflow-x: scroll;
-            margin-bottom: 18px;
-            max-height: 350px !important;
-            min-height: 120px;
-            overflow-y: auto;
-            scrollbar-gutter: stable both-edges;
-            padding-bottom: 18px;
-            position: sticky;
-            bottom: 0;
-            background: #cde9fc;
-            z-index: 1;
-        }
-        table {
-            border-collapse: collapse;
-            width: 100%;
-            min-width: 900px;
-            background: #cde9fc;
-            color: #0a2d45;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 2px 12px #00395f22;
-            font-size: 18px;
-        }
-        th, td {
-            border: 1px solid #548dd4;
-            padding: 16px 14px;
-            text-align: left;
-            font-size: 18px;
-        }
-        th {
-            background: linear-gradient(90deg, #375a7f 60%, #548dd4 100%);
-            color: #fff;
-            font-weight: bold;
-            font-size: 15px;
-        }
-        tr:hover td {
-            background: #a3d4f7;
-            color: #00395f;
-        }
-        .tabela-container thead th {
-            position: sticky;
-            top: 0;
-            background: linear-gradient(90deg, #375a7f 60%, #548dd4 100%);
-            z-index: 2;
-        }
-        .detalhes-os {
-            background: #f0faff;
-            border-radius: 10px;
-            padding: 24px 18px;
-            margin-bottom: 30px;
-            color: #0a2d45;
-            box-shadow: 0 2px 8px #00395f22;
-        }
-        .detalhes-os h2 { margin-top: 0; color: #007acc; }
-        .detalhes-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 8px 16px;
-        }
-        .detalhes-grid label { font-weight: bold; color: #007acc; margin: 0; }
-        .detalhes-grid span { margin: 0; }
-        #mensagem, #login-erro { margin-top: 15px; color: #F44336; font-weight: bold; }
-        #mensagem { color: #4CAF50; }
-        #login-erro { color: #F44336; }
-        #abrir-detalhes .detalhes-os { background: #e3f2fd; }
-        #abrir-arquivos a {
-            color: #007acc;
-            text-decoration: underline;
-            font-weight: bold;
-        }
-        #abrir-arquivos a:hover { color: #548dd4; }
-        #erro-grafico { color: #F44336; font-weight: bold; margin-top: 10px; }
-        @media (max-width: 900px) {
-            .container { padding: 8px; }
-            .filtros { flex-direction: column; gap: 5px; }
-            table, th, td { font-size: 13px; }
-            .aba-btn { width: 100%; margin-bottom: 2px; }
-            .detalhes-grid { grid-template-columns: 1fr 1fr; }
-            .tabela-container { max-height: 220px; }
-        }
-        @media (max-width: 700px) {
-            .container {
-                padding: 4px 0 0 0;
-                min-height: 100vh;
-                width: 100vw;
-                max-width: 100vw;
-                border-radius: 0;
-                box-shadow: none;
-                display: flex;
-                flex-direction: column;
-            }
-            #graficos-area {
-                min-height: 700px;
-                padding-bottom: 40px;
-            }
-            #grafico-os {
-                margin-top: 100px;
-                height: 220px !important;
-                max-width: 100vw;
-            }
-            .abas {
-                display: none !important;
-            }
-            .menu-hamburguer {
-                display: block;
-                position: fixed !important;
-                top: 18px;
-                left: 18px;
-                z-index: 1001 !important;
-            }
-            #btn-filtros {
-                position: absolute;
-                top: 18px;
-                right: 18px;
-                z-index: 11;
-                margin: 0;
-                float: none;
-            }
-            h1 {
-                margin-top: 60px;
-                text-align: center;
-            }
-            .tabela-container {
-                max-height: 350px !important;
-                min-width: 0;
-                overflow-x: auto;
-                overflow-y: auto;
-                flex: 1 1 auto;
-            }
-            table {
-                min-width: 600px;
-                font-size: 13px;
-            }
-            #painel-area {
-                min-height: 100vh;
-                display: flex;
-                flex-direction: column;
-            }
-        }
-        @media (max-width: 600px) {
-            .container {
-                max-width: 100vw;
-                width: 100vw;
-                min-width: 0;
-                margin: 0;
-                border-radius: 0;
-                padding: 0 2vw 10vw 2vw;
-                box-shadow: none;
-                min-height: 100vh;
-            }
-            h1, h2 {
-                font-size: 1.2em;
-                text-align: center;
-            }
-            .tabela-container {
-                max-height: unset;
-                min-width: 0;
-                overflow-x: auto;
-                overflow-y: auto;
-                flex: 1 1 auto;
-            }
-            table {
-                min-width: 500px;
-                font-size: 12px;
-            }
-            #painel-area {
-                min-height: 100vh;
-                display: flex;
-                flex-direction: column;
-            }
-        }
-        /* --- LOGIN CENTRALIZADO E DESTACADO --- */
-        #login-area {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 60vh;
-        }
-        #login-form {
-            background: rgba(10,30,60,0.98);
-            border-radius: 18px;
-            box-shadow: 0 4px 32px #0a2d45cc;
-            padding: 38px 38px 28px 38px;
-            min-width: 340px;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            border: 2.5px solid #548dd4;
-        }
-        #login-form label {
-            color: #cde9fc;
-            font-size: 16px;
-            margin-bottom: 2px;
-        }
-        #login-form input {
-            width: 100%;
-            font-size: 17px;
-            padding: 10px 12px;
-        }
-        #login-form button {
-            width: 100%;
-            font-size: 17px;
-            margin-top: 12px;
-            padding: 12px 0;
-        }
-        #login-erro {
-            color: #F44336;
-            font-weight: bold;
-            text-align: center;
-            margin-top: 10px;
-        }
-        /* MENU HAMBURGUER */
-        .menu-hamburguer {
-            display: block !important;
-            background: rgba(255,255,255,0.18) !important;
-            border-radius: 12px;
-            box-shadow: 0 2px 8px #00395f33;
-            border: 1.5px solid #6fb8f5;
-            transition: background 0.2s, box-shadow 0.2s;
-            font-size: 30px;
-            color: #cde9fc;
-            cursor: pointer;
-            margin-right: 12px;
-            position: fixed !important;
-            top: 18px;
-            left: 18px;
-            z-index: 1001 !important;
-        }
-        .menu-hamburguer:hover {
-            background: rgba(0,123,255,0.18) !important;
-            box-shadow: 0 4px 16px #00395f55;
-        }
-        body:not(.logado) .menu-hamburguer {
-            display: none !important;
-        }
-        body.logado #login-area { display: none !important; }
-        body:not(.logado) .container { display: none !important; }
-        @media (max-width: 700px) {
-            .abas {
-                display: none !important;
-            }
-            .menu-hamburguer {
-                display: block;
-                position: absolute;
-                top: 18px;
-                left: 18px;
-                z-index: 10;
-            }
-            .menu-mobile {
-                display: flex;
-                flex-direction: column;
-                position: fixed;
-                top: 60px;
-                left: 18px;
-                background: #1b4d7a;
-                border-radius: 10px;
-                box-shadow: 0 2px 12px #00395f55;
-                padding: 8px 0;
-                min-width: 140px;
-                z-index: 20;
-                opacity: 0;
-                transform: translateY(-20px);
-                pointer-events: none;
-                transition: opacity 0.35s cubic-bezier(.4,0,.2,1), transform 0.35s cubic-bezier(.4,0,.2,1);
-            }
-            .menu-mobile.show {
-                opacity: 1;
-                transform: translateY(0);
-                pointer-events: auto;
-            }
-            .menu-mobile button {
-                width: 100%;
-                border-radius: 0;
-                margin: 0;
-                text-align: left;
-                padding: 12px 18px;
-                background: none;
-                color: #cde9fc;
-                border: none;
-                font-size: 16px;
-            }
-            .menu-mobile button.aba-ativa {
-                background: #548dd4;
-                color: #fff;
-            }
-        }
-        body:not(.logado) #filtros-overlay { display: none !important; }
-        #filtros-overlay.hidden { display: none !important; }
-        #painel-filtros {
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            gap: 18px 16px;
-            align-items: end;
-            margin-bottom: 18px;
-        }
-        #painel-filtros > div {
-            min-width: 120px;
-        }
-        #painel-filtros label {
-            display: block;
-            font-weight: bold;
-            color: #6fb8f5;
-            margin-bottom: 4px;
-        }
-        #painel-filtros input, #painel-filtros select {
-            width: 100%;
-            box-sizing: border-box;
-        }
-        @media (max-width: 900px) {
-            #painel-filtros {
-                grid-template-columns: 1fr 1fr;
-            }
-        }
-        @media (max-width: 600px) {
-            #painel-filtros {
-                grid-template-columns: 1fr;
-            }
-        }
-        #painel-area h1 {
-            position: sticky;
-            top: 0;
-            z-index: 3;
-            background: rgba(10, 30, 60, 0.98);
-            margin-top: 0;
-            padding-top: 12px;
-            padding-bottom: 12px;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 <!-- Overlay do painel de filtros (fora do painel-area) -->
@@ -448,6 +20,17 @@
         </div>
     </div>
 </div>
+<!-- ===== NOVO MENU LATERAL ===== -->
+<div class="menu-lateral" id="menu-lateral">
+    <div class="menu-logo" style="text-align:center;margin:18px 0 24px 0;font-size:1.5em;font-weight:bold;color:#007acc;">OS Web</div>
+    <button class="menu-item" id="menu-resumo" onclick="mostrarAba('resumo')"> Resumo</button>
+    <button class="menu-item" id="menu-abrir" onclick="mostrarAba('abrir')"> Abrir OS</button>
+    <button class="menu-item" id="menu-graficos" onclick="mostrarAba('graficos')"> Gráficos</button>
+    <button class="logout-btn" style="margin:32px 12px 0 12px;width:calc(100% - 24px);" onclick="logout()">Sair</button>
+</div>
+<!-- ===== FIM DO MENU LATERAL ===== -->
+<!-- Botão hambúrguer -->
+<button class="menu-hamburguer" id="btn-menu-hamburguer" onclick="toggleMenuLateral()"> ☰</button>
 <div id="login-area">
     <h1>Login</h1>
     <form id="login-form">
@@ -460,13 +43,6 @@
     </form>
 </div>
 <div class="container">
-    <button class="menu-hamburguer" id="btn-menu-hamburguer" onclick="toggleMenuMobile()">&#9776;</button>
-    <div id="menu-mobile" class="menu-mobile hidden"></div>
-    <div class="abas hidden" id="abas-navegacao">
-        <button id="aba-resumo" class="aba-btn aba-ativa" onclick="mostrarAba('resumo')">Resumo</button>
-        <button id="aba-abrir" class="aba-btn" onclick="mostrarAba('abrir')">Abrir OS</button>
-        <button id="aba-graficos" class="aba-btn" onclick="mostrarAba('graficos')">Gráficos</button>
-    </div>
     <div id="painel-area" class="hidden aba-area">
         <h1>Resumo das Ordens de Serviço
             <button id="btn-filtros" onclick="abrirFiltros()" style="background:none;border:none;font-size:1.5em;color:#007acc;cursor:pointer;" title="Filtros"><span>&#128269;</span></button>
@@ -528,36 +104,36 @@
     const ordemColunasResumo = [
         "Cliente", "Modelo", "OS", "Entrada equip.", "Valor", "Saída equip.", "Pagamento",
         "Data pagamento 1", "Data pagamento 2", "Data pagamento 3", "Nº Série", "Técnico",
-        "Vezes", "avaliacao_tecnica", "causas_provavel", "id"
+        "Vezes", "avaliacao_tecnica", "causas_provavel", "status"
     ];
     function mostrarAba(qual) {
-        fecharMenuMobile();
+        fecharMenuLateral();
         fecharFiltros();
         // Esconde todas as áreas de aba
         document.querySelectorAll('.aba-area').forEach(e => e.classList.add('hidden'));
-        document.getElementById('aba-resumo').classList.remove('aba-ativa');
-        document.getElementById('aba-abrir').classList.remove('aba-ativa');
-        document.getElementById('aba-graficos').classList.remove('aba-ativa');
+        document.getElementById('menu-resumo').classList.remove('ativo');
+        document.getElementById('menu-abrir').classList.remove('ativo');
+        document.getElementById('menu-graficos').classList.remove('ativo');
         
         if (qual === 'resumo') {
-            document.getElementById('aba-resumo').classList.add('aba-ativa');
+            document.getElementById('menu-resumo').classList.add('ativo');
             document.getElementById('painel-area').classList.remove('hidden');
             document.getElementById('abrir-area').classList.add('hidden');
             document.getElementById('graficos-area').classList.add('hidden');
         } else if (qual === 'abrir') {
-            document.getElementById('aba-abrir').classList.add('aba-ativa');
+            document.getElementById('menu-abrir').classList.add('ativo');
             document.getElementById('abrir-area').classList.remove('hidden');
             document.getElementById('painel-area').classList.add('hidden');
             document.getElementById('graficos-area').classList.add('hidden');
         } else if (qual === 'graficos') {
-            document.getElementById('aba-graficos').classList.add('aba-ativa');
+            document.getElementById('menu-graficos').classList.add('ativo');
             document.getElementById('graficos-area').classList.remove('hidden');
             document.getElementById('painel-area').classList.add('hidden');
             document.getElementById('abrir-area').classList.add('hidden');
             preencherAnosGraficos();
             carregarGraficoMensal();
         }
-        atualizarMenuMobileAbaAtiva();
+        destacarMenuAba(qual);
     }
     function mostrarPainel() {
         fecharFiltros();
@@ -567,9 +143,9 @@
         document.getElementById('painel-area').classList.remove('hidden');
         document.getElementById('abrir-area').classList.add('hidden');
         document.getElementById('graficos-area').classList.add('hidden');
-        document.getElementById('aba-resumo').classList.add('aba-ativa');
-        document.getElementById('aba-abrir').classList.remove('aba-ativa');
-        document.getElementById('aba-graficos').classList.remove('aba-ativa');
+        document.getElementById('menu-resumo').classList.add('ativo');
+        document.getElementById('menu-abrir').classList.remove('ativo');
+        document.getElementById('menu-graficos').classList.remove('ativo');
         carregarOS();
         preencherAbrirOSList();
     }
@@ -654,9 +230,9 @@
         });
         const elAno = document.getElementById('filtro-ano');
         if (elAno) {
-            const valAno = elAno.value;
-            elAno.innerHTML = '<option value="">Todos</option>' + Array.from(anos).sort().map(a=>`<option value="${a}">${a}</option>`).join('');
-            elAno.value = valAno;
+        const valAno = elAno.value;
+        elAno.innerHTML = '<option value="">Todos</option>' + Array.from(anos).sort().map(a=>`<option value="${a}">${a}</option>`).join('');
+        elAno.value = valAno;
         }
     }
     function aplicarFiltros() {
@@ -738,12 +314,12 @@
                     // Procura o campo ignorando maiúsculas/minúsculas e acentos
                     const key = Object.keys(data).find(k => removerAcentos(k).toLowerCase() === removerAcentos(campo).toLowerCase());
                     if (key) {
-                        const label = document.createElement('label');
+                    const label = document.createElement('label');
                         label.textContent = campo + ':';
-                        const span = document.createElement('span');
+                    const span = document.createElement('span');
                         span.textContent = data[key] || '';
-                        grid.appendChild(label);
-                        grid.appendChild(span);
+                    grid.appendChild(label);
+                    grid.appendChild(span);
                     }
                 });
                 document.getElementById('detalhes-os').classList.remove('hidden');
@@ -961,29 +537,13 @@
         });
     }
     // MENU HAMBURGUER MOBILE
-    function toggleMenuMobile() {
-        const menu = document.getElementById('menu-mobile');
-        
-        if (menu.classList.contains('hidden') || !menu.classList.contains('show')) {
-            // Abrir menu
-            menu.innerHTML = `
-                <button class="${document.getElementById('aba-resumo').classList.contains('aba-ativa') ? 'aba-ativa' : ''}" onclick="mostrarAba('resumo')">Resumo</button>
-                <button class="${document.getElementById('aba-abrir').classList.contains('aba-ativa') ? 'aba-ativa' : ''}" onclick="mostrarAba('abrir')">Abrir OS</button>
-                <button class="${document.getElementById('aba-graficos').classList.contains('aba-ativa') ? 'aba-ativa' : ''}" onclick="mostrarAba('graficos')">Gráficos</button>
-            `;
-            menu.classList.remove('hidden');
-            menu.classList.add('show');
-        } else {
-            // Fechar menu
-            fecharMenuMobile();
-        }
+    function toggleMenuLateral() {
+        const menu = document.getElementById('menu-lateral');
+        menu.classList.toggle('aberta');
     }
-    function fecharMenuMobile() {
-        const menu = document.getElementById('menu-mobile');
-        menu.classList.remove('show');
-        setTimeout(() => {
-            menu.classList.add('hidden');
-        }, 350); // Aguarda a animação terminar
+    function fecharMenuLateral() {
+        const menu = document.getElementById('menu-lateral');
+        menu.classList.remove('aberta');
     }
     function abrirFiltros() {
         console.log('abrirFiltros chamado');
@@ -1068,15 +628,31 @@
         if (btnFiltro) {
             btnFiltro.onclick = abrirFiltros;
         }
+        const btnMenu = document.getElementById('btn-menu-hamburguer');
+        if (btnMenu) btnMenu.onclick = toggleMenuLateral;
+        // Fecha menu ao clicar fora
+        document.body.addEventListener('click', function(e) {
+            const menu = document.getElementById('menu-lateral');
+            const btn = document.getElementById('btn-menu-hamburguer');
+            if (window.innerWidth <= 900 && menu.classList.contains('aberta')) {
+                if (!menu.contains(e.target) && e.target !== btn) {
+                    fecharMenuLateral();
+                }
+            }
+        });
+        // Garante abas visíveis sempre que o menu lateral estiver aberto
+        const menu = document.getElementById('menu-lateral');
+        if (menu && menu.classList.contains('aberta')) {
+            // Aba ativa já é tratada pela função destacarMenuAba
+        }
     });
-    function atualizarMenuMobileAbaAtiva() {
-        const menu = document.getElementById('menu-mobile');
-        if (!menu || menu.classList.contains('hidden')) return;
-        menu.innerHTML = `
-            <button class="${document.getElementById('aba-resumo').classList.contains('aba-ativa') ? 'aba-ativa' : ''}" onclick="mostrarAba('resumo')">Resumo</button>
-            <button class="${document.getElementById('aba-abrir').classList.contains('aba-ativa') ? 'aba-ativa' : ''}" onclick="mostrarAba('abrir')">Abrir OS</button>
-            <button class="${document.getElementById('aba-graficos').classList.contains('aba-ativa') ? 'aba-ativa' : ''}" onclick="mostrarAba('graficos')">Gráficos</button>
-        `;
+    function destacarMenuAba(qual) {
+        document.getElementById('menu-resumo').classList.remove('ativo');
+        document.getElementById('menu-abrir').classList.remove('ativo');
+        document.getElementById('menu-graficos').classList.remove('ativo');
+        if (qual === 'resumo') document.getElementById('menu-resumo').classList.add('ativo');
+        if (qual === 'abrir') document.getElementById('menu-abrir').classList.add('ativo');
+        if (qual === 'graficos') document.getElementById('menu-graficos').classList.add('ativo');
     }
     // Salva e recupera o token JWT
     function setToken(token) {
@@ -1098,4 +674,4 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
 </body>
-</html>
+</html> 
