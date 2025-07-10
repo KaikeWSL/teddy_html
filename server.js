@@ -123,19 +123,18 @@ app.get('/api/grafico_mensal/:ano', authMiddleware, async (req, res) => {
       let dataStr = row['Saída equip.'];
       let valorStr = row['Valor'];
       if (!dataStr || !valorStr) return;
-      // Tenta converter a data de forma robusta
-      let data = new Date(dataStr);
-      if (isNaN(data.getTime())) {
-        // Tenta converter formato dd/mm/yyyy
-        if (typeof dataStr === 'string' && dataStr.includes('/')) {
-          const [dia, mes, anoStr] = dataStr.split('/');
-          if (dia && mes && anoStr) {
-            data = new Date(`${anoStr}-${mes}-${dia}`);
-          }
+      let data = null;
+      // Conversão robusta para dd/mm/yyyy
+      if (typeof dataStr === 'string' && dataStr.includes('/')) {
+        const [dia, mes, anoStr] = dataStr.split('/');
+        if (dia && mes && anoStr) {
+          data = new Date(`${anoStr}-${mes}-${dia}`);
         }
+      } else {
+        data = new Date(dataStr);
       }
-      if (isNaN(data.getTime()) || data.getFullYear() !== ano) return;
-      // Converte valor para float de forma robusta
+      if (!data || isNaN(data.getTime()) || data.getFullYear() !== ano) return;
+      // Conversão robusta do valor
       let valor = 0;
       if (typeof valorStr === 'string') {
         valor = parseFloat(valorStr.replace(/[^0-9,.-]+/g, '').replace('.', '').replace(',', '.')) || 0;
@@ -162,11 +161,31 @@ app.get('/api/grafico_comparativo/:ano1/:ano2', authMiddleware, async (req, res)
     const meses1 = Array(12).fill(0);
     const meses2 = Array(12).fill(0);
     result.rows.forEach(row => {
-      if (row['Saída equip.'] && row['Valor']) {
-        const data = new Date(row['Saída equip.']);
-        const valor = parseFloat((row['Valor'] + '').replace('R$', '').replace('.', '').replace(',', '.')) || 0;
-        if (data.getFullYear() === ano1) meses1[data.getMonth()] += valor;
-        if (data.getFullYear() === ano2) meses2[data.getMonth()] += valor;
+      let dataStr = row['Saída equip.'];
+      let valorStr = row['Valor'];
+      if (!dataStr || !valorStr) return;
+      let data = null;
+      // Conversão robusta para dd/mm/yyyy
+      if (typeof dataStr === 'string' && dataStr.includes('/')) {
+        const [dia, mes, anoStr] = dataStr.split('/');
+        if (dia && mes && anoStr) {
+          data = new Date(`${anoStr}-${mes}-${dia}`);
+        }
+      } else {
+        data = new Date(dataStr);
+      }
+      if (!data || isNaN(data.getTime())) return;
+      // Conversão robusta do valor
+      let valor = 0;
+      if (typeof valorStr === 'string') {
+        valor = parseFloat(valorStr.replace(/[^0-9,.-]+/g, '').replace('.', '').replace(',', '.')) || 0;
+      } else if (typeof valorStr === 'number') {
+        valor = valorStr;
+      }
+      const mesIdx = data.getMonth(); // 0 = janeiro
+      if (mesIdx >= 0 && mesIdx < 12) {
+        if (data.getFullYear() === ano1) meses1[mesIdx] += valor;
+        if (data.getFullYear() === ano2) meses2[mesIdx] += valor;
       }
     });
     res.json({
