@@ -120,13 +120,31 @@ app.get('/api/grafico_mensal/:ano', authMiddleware, async (req, res) => {
     const result = await pool.query('SELECT "Saída equip.", "Valor" FROM os_cadastros');
     const meses = Array(12).fill(0);
     result.rows.forEach(row => {
-      if (row['Saída equip.'] && row['Valor']) {
-        const data = new Date(row['Saída equip.']);
-        if (data.getFullYear() === ano) {
-          const mes = data.getMonth();
-          const valor = parseFloat((row['Valor'] + '').replace('R$', '').replace('.', '').replace(',', '.')) || 0;
-          meses[mes] += valor;
+      let dataStr = row['Saída equip.'];
+      let valorStr = row['Valor'];
+      if (!dataStr || !valorStr) return;
+      // Tenta converter a data de forma robusta
+      let data = new Date(dataStr);
+      if (isNaN(data.getTime())) {
+        // Tenta converter formato dd/mm/yyyy
+        if (typeof dataStr === 'string' && dataStr.includes('/')) {
+          const [dia, mes, anoStr] = dataStr.split('/');
+          if (dia && mes && anoStr) {
+            data = new Date(`${anoStr}-${mes}-${dia}`);
+          }
         }
+      }
+      if (isNaN(data.getTime()) || data.getFullYear() !== ano) return;
+      // Converte valor para float de forma robusta
+      let valor = 0;
+      if (typeof valorStr === 'string') {
+        valor = parseFloat(valorStr.replace(/[^0-9,.-]+/g, '').replace('.', '').replace(',', '.')) || 0;
+      } else if (typeof valorStr === 'number') {
+        valor = valorStr;
+      }
+      const mesIdx = data.getMonth(); // 0 = janeiro
+      if (mesIdx >= 0 && mesIdx < 12) {
+        meses[mesIdx] += valor;
       }
     });
     res.json({ meses: Array.from({length:12}, (_,i)=>String(i+1).padStart(2,'0')), valores: meses });

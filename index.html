@@ -6,6 +6,8 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+<!-- Botão hambúrguer fixo no topo -->
+<button class="menu-hamburguer" id="btn-menu-hamburguer" onclick="toggleMenuLateral()">&#9776;</button>
 <!-- Overlay do painel de filtros (fora do painel-area) -->
 <div id="filtros-overlay" class="hidden" style="position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.35);z-index:1000;display:flex;align-items:center;justify-content:center;">
     <div id="painel-filtros" style="background:#f7fbff;border-radius:16px;box-shadow:0 4px 32px #00395f55;padding:24px 18px;min-width:260px;max-width:95vw;max-height:90vh;overflow:auto;position:relative;">
@@ -33,67 +35,72 @@
         <div id="login-erro"></div>
     </form>
 </div>
-<div class="container">
-    <div class="menu-lateral"></div>
-    <button class="menu-hamburguer" id="btn-menu-hamburguer" onclick="toggleMenuMobile()">&#9776;</button>
-    <div id="menu-mobile" class="menu-mobile hidden"></div>
-    <div class="abas hidden" id="abas-navegacao">
-        <button id="aba-resumo" class="aba-btn aba-ativa" onclick="mostrarAba('resumo')">Resumo</button>
-        <button id="aba-abrir" class="aba-btn" onclick="mostrarAba('abrir')">Abrir OS</button>
-        <button id="aba-graficos" class="aba-btn" onclick="mostrarAba('graficos')">Gráficos</button>
+<!-- ===== NOVO MENU LATERAL ===== -->
+<div class="menu-lateral" id="menu-lateral">
+    <div class="menu-logo" style="text-align:center;margin:18px 0 24px 0;font-size:1.5em;font-weight:bold;color:#007acc;">OS Web</div>
+    <button class="menu-item" id="menu-resumo" onclick="mostrarAba('resumo')">Resumo</button>
+    <button class="menu-item" id="menu-abrir" onclick="mostrarAba('abrir')">Abrir OS</button>
+    <button class="menu-item" id="menu-graficos" onclick="mostrarAba('graficos')">Gráficos</button>
+    <button class="logout-btn" style="margin:32px 12px 0 12px;width:calc(100% - 24px);" onclick="logout()">Sair</button>
+</div>
+<!-- ===== FIM DO MENU LATERAL ===== -->
+<div id="menu-mobile" class="menu-mobile hidden"></div>
+<!-- Removido o bloco das abas azuis -->
+<div id="painel-area" class="hidden aba-area">
+    <!-- Centralizar o título e a lupa -->
+    <div class="titulo-centralizado">
+      <span class="titulo-resumo">Resumo das Ordens de Serviço</span>
+      <button id="btn-filtros" onclick="abrirFiltros()" class="icone-lupa" style="background:none;border:none;font-size:1.2em;vertical-align:middle;margin-left:8px;cursor:pointer;" title="Filtros">&#128269;</button>
     </div>
-    <div id="painel-area" class="hidden aba-area">
-        <h1>Resumo das Ordens de Serviço
-            <button id="btn-filtros" onclick="abrirFiltros()" style="background:none;border:none;font-size:1.5em;color:#007acc;cursor:pointer;" title="Filtros"><span>&#128269;</span></button>
-        </h1>
-        <div class="contagem" id="contagem"></div>
-        <div class="tabela-container">
-            <table>
-                <thead id="tabela-head">
-                    <tr id="tabela-head-row"></tr>
-                </thead>
-                <tbody id="tabela-resumo">
-                    <tr><td colspan="20">Carregando...</td></tr>
-                </tbody>
-            </table>
-        </div>
-        <div class="detalhes-os hidden" id="detalhes-os">
-            <h2>Detalhes da OS</h2>
-            <div class="detalhes-grid" id="detalhes-grid"></div>
-        </div>
+    <div class="contagem" id="contagem"></div>
+    <div class="tabela-container">
+        <table>
+            <thead id="tabela-head">
+                <tr id="tabela-head-row"></tr>
+            </thead>
+            <tbody id="tabela-resumo">
+                <tr><td colspan="20">Carregando...</td></tr>
+            </tbody>
+        </table>
     </div>
-    <div id="abrir-area" class="hidden aba-area">
-        <h1>Abrir OS</h1>
-        <div style="margin-bottom:15px;">
-            <label for="abrir-os-input">Digite ou selecione o número da OS:</label>
-            <input type="text" id="abrir-os-input" list="abrir-os-list" style="width:200px;">
-            <datalist id="abrir-os-list"></datalist>
-            <button onclick="buscarAbrirOS()">Buscar</button>
-        </div>
-        <div id="abrir-detalhes"></div>
-        <div id="abrir-arquivos"></div>
+    <div class="detalhes-os hidden" id="detalhes-os">
+        <h2>Detalhes da OS</h2>
+        <div class="detalhes-grid" id="detalhes-grid"></div>
     </div>
-    <div id="graficos-area" class="hidden aba-area">
-        <h1>Gráficos de OS</h1>
-        <div style="margin-bottom:15px;">
-            <label><input type="radio" name="tipo-grafico" value="mensal" checked onchange="atualizarTipoGrafico()"> Mensal</label>
-            <label><input type="radio" name="tipo-grafico" value="comparativo" onchange="atualizarTipoGrafico()"> Comparativo</label>
-        </div>
-        <div id="filtros-grafico-mensal">
-            <label for="ano-grafico-mensal">Ano:</label>
-            <select id="ano-grafico-mensal"></select>
-            <button onclick="carregarGraficoMensal()">Atualizar</button>
-        </div>
-        <div id="filtros-grafico-comparativo" class="hidden">
-            <label for="ano1-grafico">Ano 1:</label>
-            <select id="ano1-grafico"></select>
-            <label for="ano2-grafico">Ano 2:</label>
-            <select id="ano2-grafico"></select>
-            <button onclick="carregarGraficoComparativo()">Atualizar</button>
-        </div>
-        <canvas id="grafico-os" width="900" height="520"></canvas>
-        <div id="erro-grafico" style="color:red;"></div>
+</div>
+<div id="abrir-area" class="hidden aba-area">
+    <h1>Abrir OS</h1>
+    <div style="margin-bottom:15px;">
+        <label for="abrir-os-input">Digite ou selecione o número da OS:</label>
+        <input type="text" id="abrir-os-input" list="abrir-os-list" style="width:200px;">
+        <datalist id="abrir-os-list"></datalist>
+        <button onclick="buscarAbrirOS()">Buscar</button>
     </div>
+    <div id="abrir-detalhes"></div>
+    <div id="abrir-arquivos"></div>
+</div>
+<div id="graficos-area" class="hidden aba-area">
+    <h1 class="titulo-centralizado"><span class="titulo-resumo">Gráficos de OS</span></h1>
+    <div style="margin-bottom:15px;">
+        <label><input type="radio" name="tipo-grafico" value="mensal" checked onchange="atualizarTipoGrafico()"> Mensal</label>
+        <label><input type="radio" name="tipo-grafico" value="comparativo" onchange="atualizarTipoGrafico()"> Comparativo</label>
+    </div>
+    <div id="filtros-grafico-mensal" style="display:flex;align-items:center;gap:10px;">
+        <label for="ano-grafico-mensal">Ano:</label>
+        <select id="ano-grafico-mensal"></select>
+        <button onclick="carregarGraficoMensal()">Atualizar</button>
+    </div>
+    <div id="filtros-grafico-comparativo" class="hidden" style="display:flex;align-items:center;gap:10px;">
+        <label for="ano1-grafico">Ano 1:</label>
+        <select id="ano1-grafico"></select>
+        <label for="ano2-grafico">Ano 2:</label>
+        <select id="ano2-grafico"></select>
+        <button onclick="carregarGraficoComparativo()">Atualizar</button>
+    </div>
+    <div id="grafico-legenda" class="grafico-legenda"></div>
+    <canvas id="grafico-os" width="900" height="520"></canvas>
+    <div id="erro-grafico" style="color:red;"></div>
+</div>
 </div>
 <script>
     let osData = [];
@@ -103,48 +110,43 @@
     const ordemColunasResumo = [
         "Cliente", "Modelo", "OS", "Entrada equip.", "Valor", "Saída equip.", "Pagamento",
         "Data pagamento 1", "Data pagamento 2", "Data pagamento 3", "Nº Série", "Técnico",
-        "Vezes", "avaliacao_tecnica", "causas_provavel", "Status"
+        "Vezes", "avaliacao_tecnica", "causas_provavel", "status"
     ];
     function mostrarAba(qual) {
-        fecharMenuMobile();
-        fecharFiltros();
         // Esconde todas as áreas de aba
         document.querySelectorAll('.aba-area').forEach(e => e.classList.add('hidden'));
-        document.getElementById('aba-resumo').classList.remove('aba-ativa');
-        document.getElementById('aba-abrir').classList.remove('aba-ativa');
-        document.getElementById('aba-graficos').classList.remove('aba-ativa');
-        
+        // Remove classe 'ativo' de todos os botões do menu lateral
+        document.querySelectorAll('.menu-item').forEach(btn => btn.classList.remove('ativo'));
         if (qual === 'resumo') {
-            document.getElementById('aba-resumo').classList.add('aba-ativa');
             document.getElementById('painel-area').classList.remove('hidden');
             document.getElementById('abrir-area').classList.add('hidden');
             document.getElementById('graficos-area').classList.add('hidden');
+            document.getElementById('menu-resumo').classList.add('ativo');
         } else if (qual === 'abrir') {
-            document.getElementById('aba-abrir').classList.add('aba-ativa');
             document.getElementById('abrir-area').classList.remove('hidden');
             document.getElementById('painel-area').classList.add('hidden');
             document.getElementById('graficos-area').classList.add('hidden');
+            document.getElementById('menu-abrir').classList.add('ativo');
         } else if (qual === 'graficos') {
-            document.getElementById('aba-graficos').classList.add('aba-ativa');
             document.getElementById('graficos-area').classList.remove('hidden');
             document.getElementById('painel-area').classList.add('hidden');
             document.getElementById('abrir-area').classList.add('hidden');
+            document.getElementById('menu-graficos').classList.add('ativo');
             preencherAnosGraficos();
             carregarGraficoMensal();
         }
-        atualizarMenuMobileAbaAtiva();
+        fecharMenuLateral(); // Fecha o menu lateral após trocar de tela
     }
     function mostrarPainel() {
         fecharFiltros();
         document.body.classList.add('logado');
         document.getElementById('login-area').classList.add('hidden');
-        document.getElementById('abas-navegacao').classList.remove('hidden');
         document.getElementById('painel-area').classList.remove('hidden');
         document.getElementById('abrir-area').classList.add('hidden');
         document.getElementById('graficos-area').classList.add('hidden');
-        document.getElementById('aba-resumo').classList.add('aba-ativa');
-        document.getElementById('aba-abrir').classList.remove('aba-ativa');
-        document.getElementById('aba-graficos').classList.remove('aba-ativa');
+        // Destaca o menu 'Resumo' como ativo
+        document.querySelectorAll('.menu-item').forEach(btn => btn.classList.remove('ativo'));
+        document.getElementById('menu-resumo').classList.add('ativo');
         carregarOS();
         preencherAbrirOSList();
     }
@@ -451,6 +453,10 @@
     function renderGraficoMensal(meses, valores, ano) {
         if (chart) chart.destroy();
         const ctx = document.getElementById('grafico-os').getContext('2d');
+        // Atualiza legenda customizada
+        document.getElementById('grafico-legenda').innerHTML = `
+          <span class="legenda-item"><span class="legenda-cor" style="background:rgba(0,123,255,0.6);"></span>Valor por mês (${ano})</span>
+        `;
         chart = new Chart(ctx, {
             type: 'bar',
             data: {
@@ -466,14 +472,12 @@
                 layout: { padding: { top: 100 } },
                 plugins: {
                     legend: {
-                        display: true,
-                        position: 'top',
-                        labels: { padding: 24 }
+                        display: false
                     },
                     datalabels: {
                         anchor: 'end',
                         align: 'end',
-                        color: '#fff',
+                        color: '#111',
                         font: { weight: 'bold', size: 14 },
                         rotation: -90,
                         offset: 8,
@@ -495,6 +499,11 @@
     function renderGraficoComparativo(meses, valores1, valores2, ano1, ano2) {
         if (chart) chart.destroy();
         const ctx = document.getElementById('grafico-os').getContext('2d');
+        // Atualiza legenda customizada
+        document.getElementById('grafico-legenda').innerHTML = `
+          <span class="legenda-item"><span class="legenda-cor" style="background:rgba(0,123,255,0.6);"></span>Ano ${ano1}</span>
+          <span class="legenda-item"><span class="legenda-cor" style="background:rgba(220,53,69,0.6);"></span>Ano ${ano2}</span>
+        `;
         chart = new Chart(ctx, {
             type: 'bar',
             data: {
@@ -509,14 +518,12 @@
                 layout: { padding: { top: 100 } },
                 plugins: {
                     legend: {
-                        display: true,
-                        position: 'top',
-                        labels: { padding: 24 }
+                        display: false
                     },
                     datalabels: {
                         anchor: 'end',
                         align: 'end',
-                        color: '#fff',
+                        color: '#111',
                         font: { weight: 'bold', size: 14 },
                         rotation: -90,
                         offset: 8,
@@ -536,20 +543,13 @@
         });
     }
     // MENU HAMBURGUER MOBILE
-    function toggleMenuMobile() {
-        const menu = document.querySelector('.menu-lateral');
-        const abas = document.getElementById('abas-navegacao');
-        if (menu.classList.contains('show')) {
-            menu.classList.remove('show');
-            if (abas) abas.style.display = 'none';
-        } else {
-            menu.classList.add('show');
-            if (abas) abas.style.display = 'flex';
-        }
+    function toggleMenuLateral() {
+        const menu = document.getElementById('menu-lateral');
+        menu.classList.toggle('aberta');
     }
-    function fecharMenuMobile() {
-        const menu = document.querySelector('.menu-lateral');
-        menu.classList.remove('show');
+    function fecharMenuLateral() {
+        const menu = document.getElementById('menu-lateral');
+        menu.classList.remove('aberta');
     }
     function abrirFiltros() {
         console.log('abrirFiltros chamado');
@@ -635,25 +635,25 @@
             btnFiltro.onclick = abrirFiltros;
         }
         const btnMenu = document.getElementById('btn-menu-hamburguer');
-        if (btnMenu) btnMenu.onclick = toggleMenuMobile;
+        if (btnMenu) btnMenu.onclick = toggleMenuLateral;
         // Fecha menu ao clicar fora
-        document.body.addEventListener('click', function(e) {
-            const menu = document.querySelector('.menu-lateral');
+        document.addEventListener('click', function(e) {
+            const menu = document.getElementById('menu-lateral');
             const abas = document.getElementById('abas-navegacao');
-            if (menu && menu.classList.contains('show') && !menu.contains(e.target) && e.target.id !== 'btn-menu-hamburguer') {
-                menu.classList.remove('show');
+            if (menu && menu.classList.contains('aberta') && !menu.contains(e.target) && e.target.id !== 'btn-menu-hamburguer') {
+                fecharMenuLateral();
                 if (abas) abas.style.display = 'none';
             }
         });
         // Garante abas visíveis sempre que o menu lateral estiver aberto
-        const menu = document.querySelector('.menu-lateral');
+        const menu = document.getElementById('menu-lateral');
         const abas = document.getElementById('abas-navegacao');
-        if (menu && menu.classList.contains('show') && abas) {
+        if (menu && menu.classList.contains('aberta') && abas) {
             abas.style.display = 'flex';
         }
     });
     function atualizarMenuMobileAbaAtiva() {
-        const menu = document.querySelector('.menu-lateral');
+        const menu = document.getElementById('menu-lateral');
         if (!menu || menu.classList.contains('hidden')) return;
         menu.innerHTML = `
             <button class="${document.getElementById('aba-resumo').classList.contains('aba-ativa') ? 'aba-ativa' : ''}" onclick="mostrarAba('resumo')">Resumo</button>
