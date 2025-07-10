@@ -5,6 +5,7 @@ const bcrypt = require('bcryptjs');
 const { Pool } = require('pg');
 const path = require('path');
 const fs = require('fs');
+const crypto = require('crypto');
 
 const app = express();
 app.use(cors());
@@ -42,7 +43,8 @@ app.post('/api/login', async (req, res) => {
     const result = await pool.query('SELECT usuario, senha, nome, cargo FROM usuarios WHERE usuario = $1', [usuario]);
     if (result.rows.length === 0) return res.status(401).json({ erro: 'Usuário ou senha inválidos.' });
     const user = result.rows[0];
-    const senhaOk = await bcrypt.compare(senha, user.senha) || senha === user.senha;
+    const senhaHash = crypto.createHash('sha256').update(senha).digest('hex');
+    const senhaOk = senhaHash === user.senha || senha === user.senha || await bcrypt.compare(senha, user.senha);
     if (!senhaOk) return res.status(401).json({ erro: 'Usuário ou senha inválidos.' });
     const token = jwt.sign({ usuario: user.usuario, nome: user.nome, cargo: user.cargo }, SECRET_KEY, { expiresIn: '1h' });
     res.json({ mensagem: 'Login realizado', token, nome: user.nome, cargo: user.cargo });

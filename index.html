@@ -20,19 +20,10 @@
         </div>
     </div>
 </div>
-<!-- ===== NOVO MENU LATERAL ===== -->
-<div class="menu-lateral" id="menu-lateral">
-    <div class="menu-logo" style="text-align:center;margin:18px 0 24px 0;font-size:1.5em;font-weight:bold;color:#007acc;">OS Web</div>
-    <button class="menu-item" id="menu-resumo" onclick="mostrarAba('resumo')"> Resumo</button>
-    <button class="menu-item" id="menu-abrir" onclick="mostrarAba('abrir')"> Abrir OS</button>
-    <button class="menu-item" id="menu-graficos" onclick="mostrarAba('graficos')"> Gráficos</button>
-    <button class="logout-btn" style="margin:32px 12px 0 12px;width:calc(100% - 24px);" onclick="logout()">Sair</button>
-</div>
-<!-- ===== FIM DO MENU LATERAL ===== -->
-<!-- Botão hambúrguer -->
-<button class="menu-hamburguer" id="btn-menu-hamburguer" onclick="toggleMenuLateral()"> ☰</button>
 <div id="login-area">
-    <h1>Login</h1>
+    <div style="text-align:center; margin-bottom: 18px;">
+        <h1 style="margin:0; font-size:2.2em; color:var(--primary-color, #007acc);">Login</h1>
+    </div>
     <form id="login-form">
         <label for="usuario">Usuário:</label>
         <input type="text" id="usuario" name="usuario" required autocomplete="username">
@@ -43,6 +34,14 @@
     </form>
 </div>
 <div class="container">
+    <div class="menu-lateral"></div>
+    <button class="menu-hamburguer" id="btn-menu-hamburguer" onclick="toggleMenuMobile()">&#9776;</button>
+    <div id="menu-mobile" class="menu-mobile hidden"></div>
+    <div class="abas hidden" id="abas-navegacao">
+        <button id="aba-resumo" class="aba-btn aba-ativa" onclick="mostrarAba('resumo')">Resumo</button>
+        <button id="aba-abrir" class="aba-btn" onclick="mostrarAba('abrir')">Abrir OS</button>
+        <button id="aba-graficos" class="aba-btn" onclick="mostrarAba('graficos')">Gráficos</button>
+    </div>
     <div id="painel-area" class="hidden aba-area">
         <h1>Resumo das Ordens de Serviço
             <button id="btn-filtros" onclick="abrirFiltros()" style="background:none;border:none;font-size:1.5em;color:#007acc;cursor:pointer;" title="Filtros"><span>&#128269;</span></button>
@@ -104,36 +103,36 @@
     const ordemColunasResumo = [
         "Cliente", "Modelo", "OS", "Entrada equip.", "Valor", "Saída equip.", "Pagamento",
         "Data pagamento 1", "Data pagamento 2", "Data pagamento 3", "Nº Série", "Técnico",
-        "Vezes", "avaliacao_tecnica", "causas_provavel", "status"
+        "Vezes", "avaliacao_tecnica", "causas_provavel", "Status"
     ];
     function mostrarAba(qual) {
-        fecharMenuLateral();
+        fecharMenuMobile();
         fecharFiltros();
         // Esconde todas as áreas de aba
         document.querySelectorAll('.aba-area').forEach(e => e.classList.add('hidden'));
-        document.getElementById('menu-resumo').classList.remove('ativo');
-        document.getElementById('menu-abrir').classList.remove('ativo');
-        document.getElementById('menu-graficos').classList.remove('ativo');
+        document.getElementById('aba-resumo').classList.remove('aba-ativa');
+        document.getElementById('aba-abrir').classList.remove('aba-ativa');
+        document.getElementById('aba-graficos').classList.remove('aba-ativa');
         
         if (qual === 'resumo') {
-            document.getElementById('menu-resumo').classList.add('ativo');
+            document.getElementById('aba-resumo').classList.add('aba-ativa');
             document.getElementById('painel-area').classList.remove('hidden');
             document.getElementById('abrir-area').classList.add('hidden');
             document.getElementById('graficos-area').classList.add('hidden');
         } else if (qual === 'abrir') {
-            document.getElementById('menu-abrir').classList.add('ativo');
+            document.getElementById('aba-abrir').classList.add('aba-ativa');
             document.getElementById('abrir-area').classList.remove('hidden');
             document.getElementById('painel-area').classList.add('hidden');
             document.getElementById('graficos-area').classList.add('hidden');
         } else if (qual === 'graficos') {
-            document.getElementById('menu-graficos').classList.add('ativo');
+            document.getElementById('aba-graficos').classList.add('aba-ativa');
             document.getElementById('graficos-area').classList.remove('hidden');
             document.getElementById('painel-area').classList.add('hidden');
             document.getElementById('abrir-area').classList.add('hidden');
             preencherAnosGraficos();
             carregarGraficoMensal();
         }
-        destacarMenuAba(qual);
+        atualizarMenuMobileAbaAtiva();
     }
     function mostrarPainel() {
         fecharFiltros();
@@ -143,9 +142,9 @@
         document.getElementById('painel-area').classList.remove('hidden');
         document.getElementById('abrir-area').classList.add('hidden');
         document.getElementById('graficos-area').classList.add('hidden');
-        document.getElementById('menu-resumo').classList.add('ativo');
-        document.getElementById('menu-abrir').classList.remove('ativo');
-        document.getElementById('menu-graficos').classList.remove('ativo');
+        document.getElementById('aba-resumo').classList.add('aba-ativa');
+        document.getElementById('aba-abrir').classList.remove('aba-ativa');
+        document.getElementById('aba-graficos').classList.remove('aba-ativa');
         carregarOS();
         preencherAbrirOSList();
     }
@@ -537,13 +536,20 @@
         });
     }
     // MENU HAMBURGUER MOBILE
-    function toggleMenuLateral() {
-        const menu = document.getElementById('menu-lateral');
-        menu.classList.toggle('aberta');
+    function toggleMenuMobile() {
+        const menu = document.querySelector('.menu-lateral');
+        const abas = document.getElementById('abas-navegacao');
+        if (menu.classList.contains('show')) {
+            menu.classList.remove('show');
+            if (abas) abas.style.display = 'none';
+        } else {
+            menu.classList.add('show');
+            if (abas) abas.style.display = 'flex';
+        }
     }
-    function fecharMenuLateral() {
-        const menu = document.getElementById('menu-lateral');
-        menu.classList.remove('aberta');
+    function fecharMenuMobile() {
+        const menu = document.querySelector('.menu-lateral');
+        menu.classList.remove('show');
     }
     function abrirFiltros() {
         console.log('abrirFiltros chamado');
@@ -629,30 +635,31 @@
             btnFiltro.onclick = abrirFiltros;
         }
         const btnMenu = document.getElementById('btn-menu-hamburguer');
-        if (btnMenu) btnMenu.onclick = toggleMenuLateral;
+        if (btnMenu) btnMenu.onclick = toggleMenuMobile;
         // Fecha menu ao clicar fora
         document.body.addEventListener('click', function(e) {
-            const menu = document.getElementById('menu-lateral');
-            const btn = document.getElementById('btn-menu-hamburguer');
-            if (window.innerWidth <= 900 && menu.classList.contains('aberta')) {
-                if (!menu.contains(e.target) && e.target !== btn) {
-                    fecharMenuLateral();
-                }
+            const menu = document.querySelector('.menu-lateral');
+            const abas = document.getElementById('abas-navegacao');
+            if (menu && menu.classList.contains('show') && !menu.contains(e.target) && e.target.id !== 'btn-menu-hamburguer') {
+                menu.classList.remove('show');
+                if (abas) abas.style.display = 'none';
             }
         });
         // Garante abas visíveis sempre que o menu lateral estiver aberto
-        const menu = document.getElementById('menu-lateral');
-        if (menu && menu.classList.contains('aberta')) {
-            // Aba ativa já é tratada pela função destacarMenuAba
+        const menu = document.querySelector('.menu-lateral');
+        const abas = document.getElementById('abas-navegacao');
+        if (menu && menu.classList.contains('show') && abas) {
+            abas.style.display = 'flex';
         }
     });
-    function destacarMenuAba(qual) {
-        document.getElementById('menu-resumo').classList.remove('ativo');
-        document.getElementById('menu-abrir').classList.remove('ativo');
-        document.getElementById('menu-graficos').classList.remove('ativo');
-        if (qual === 'resumo') document.getElementById('menu-resumo').classList.add('ativo');
-        if (qual === 'abrir') document.getElementById('menu-abrir').classList.add('ativo');
-        if (qual === 'graficos') document.getElementById('menu-graficos').classList.add('ativo');
+    function atualizarMenuMobileAbaAtiva() {
+        const menu = document.querySelector('.menu-lateral');
+        if (!menu || menu.classList.contains('hidden')) return;
+        menu.innerHTML = `
+            <button class="${document.getElementById('aba-resumo').classList.contains('aba-ativa') ? 'aba-ativa' : ''}" onclick="mostrarAba('resumo')">Resumo</button>
+            <button class="${document.getElementById('aba-abrir').classList.contains('aba-ativa') ? 'aba-ativa' : ''}" onclick="mostrarAba('abrir')">Abrir OS</button>
+            <button class="${document.getElementById('aba-graficos').classList.contains('aba-ativa') ? 'aba-ativa' : ''}" onclick="mostrarAba('graficos')">Gráficos</button>
+        `;
     }
     // Salva e recupera o token JWT
     function setToken(token) {
