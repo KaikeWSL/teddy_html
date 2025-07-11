@@ -69,7 +69,7 @@ app.get('/api/os_todos', authMiddleware, async (req, res) => {
       "Data pagamento 1": row["Data pagamento 1"] || row["data_pagamento_1"],
       "Data pagamento 2": row["Data pagamento 2"] || row["data_pagamento_2"],
       "Data pagamento 3": row["Data pagamento 3"] || row["data_pagamento_3"],
-      "Nº Série": row["Nº Série"] || row["num_serie"] || row["Série"] || row["serie"],
+      "Nº Série": row["Nº Série"] || row["N° Serie"] || row["Série"] || row["serie"],
       "Técnico": row["Técnico"] || row["tecnico"],
       "Vezes": row["Vezes"] || row["vezes"],
       "avaliacao_tecnica": row["avaliacao_tecnica"],
